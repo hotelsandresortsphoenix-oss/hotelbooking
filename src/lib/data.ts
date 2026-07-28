@@ -1,12 +1,7 @@
 import {
-  MapPin,
-  Waves,
-  Leaf,
-  Mountain,
-  Sun,
-  Landmark,
   Anchor,
   Ship,
+  Waves,
   Heart,
   Users,
   Gem,
@@ -32,103 +27,6 @@ export const heroStats = [
   { target: 40, suffix: "+", label: "Destinations" },
   { target: 120, suffix: "+", label: "Curated Stays" },
   { target: 24, suffix: "/7", label: "Travel Support" },
-];
-
-export const domesticDestinations = [
-  {
-    img: "/images/destinations/udaipur.jpg",
-    alt: "Royal palace architecture in Rajasthan",
-    icon: MapPin,
-    badge: "Rajasthan",
-    title: "Udaipur",
-    text: "Royal lake views, palace hotels, heritage dining and romantic sunset experiences.",
-  },
-  {
-    img: "/images/destinations/goa.jpg",
-    alt: "Palm-lined beach in Goa",
-    icon: Waves,
-    badge: "Beach escape",
-    title: "Goa",
-    text: "Premium beach resorts, vibrant dining, water activities and relaxed coastal luxury.",
-  },
-  {
-    img: "/images/destinations/kerala.jpg",
-    alt: "Kerala backwater landscape with houseboat",
-    icon: Leaf,
-    badge: "Nature & wellness",
-    title: "Kerala",
-    text: "Backwater cruises, wellness retreats, tropical landscapes and slow, soulful travel.",
-  },
-  {
-    img: "/images/destinations/kashmir.jpg",
-    alt: "Snow-covered Himalayan mountains in Kashmir",
-    icon: Mountain,
-    badge: "Himalayan retreat",
-    title: "Kashmir",
-    text: "Alpine scenery, houseboat stays, garden walks and unforgettable seasonal beauty.",
-  },
-  {
-    img: "/images/destinations/andaman.jpg",
-    alt: "Clear tropical water and white beach in the Andaman Islands",
-    icon: Sun,
-    badge: "Island holiday",
-    title: "Andaman",
-    text: "Clear blue water, island resorts, diving adventures and quiet beach moments.",
-  },
-  {
-    img: "/images/destinations/jaipur.jpg",
-    alt: "Historic architecture in Jaipur",
-    icon: Landmark,
-    badge: "Heritage city",
-    title: "Jaipur",
-    text: "Palace hotels, colourful bazaars, cultural experiences and refined royal hospitality.",
-  },
-];
-
-export const internationalStack = [
-  {
-    img: "/images/destinations/maldives.jpg",
-    alt: "Luxury overwater villas in the Maldives",
-    badge: "Indian Ocean icon",
-    title: "Maldives Private-Island Escape",
-    text: "Overwater villas, private pools, turquoise lagoons and intimate experiences designed for honeymoons and special celebrations.",
-    cta: "Explore Maldives",
-  },
-  {
-    img: "/images/destinations/dubai.jpg",
-    alt: "Dubai skyline and luxury city hotels",
-    badge: "City luxury",
-    title: "Dubai",
-    text: "Skyline hotels, desert experiences and world-class attractions.",
-  },
-  {
-    img: "/images/destinations/bali.jpg",
-    alt: "Tropical landscape and temple in Bali",
-    badge: "Culture & wellness",
-    title: "Bali",
-    text: "Private villas, tropical beaches, spa retreats and timeless culture.",
-  },
-  {
-    img: "/images/destinations/singapore.jpg",
-    alt: "Singapore skyline at Marina Bay",
-    badge: "Family favourite",
-    title: "Singapore",
-    text: "Iconic architecture, family attractions and sophisticated city stays.",
-  },
-  {
-    img: "/images/destinations/switzerland.jpg",
-    alt: "Swiss Alps and mountain lake",
-    badge: "Scenic Europe",
-    title: "Switzerland",
-    text: "Alpine landscapes, luxury trains, lakeside towns and romantic journeys.",
-  },
-  {
-    img: "/images/destinations/mauritius.jpg",
-    alt: "Tropical beachfront resort in Mauritius",
-    badge: "Island elegance",
-    title: "Mauritius",
-    text: "Beachfront resorts, clear lagoons and relaxed island experiences.",
-  },
 ];
 
 export const hotels = [

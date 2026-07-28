@@ -1,6 +1,11 @@
 import { PageHero, ResortsGrid } from "@/components/PageSections";
+import { getPublicItems } from "@backend/content";
 
-export default function ResortsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ResortsPage() {
+  const adminItems = await getPublicItems("resort");
+
   return (
     <>
       <PageHero
@@ -9,7 +14,7 @@ export default function ResortsPage() {
         text="Beach resorts, private islands, family favourites and wellness retreats for holidays that feel effortless."
         image="/images/destinations/atlantis-palm.jpg"
       />
-      <ResortsGrid />
+      <ResortsGrid items={adminItems} />
     </>
   );
 }

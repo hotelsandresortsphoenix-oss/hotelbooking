@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Phone, Mail, Sparkles, CalendarCheck, Menu, X } from "lucide-react";
 import { navItems } from "@/lib/data";
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -19,6 +21,10 @@ export default function Header() {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <>

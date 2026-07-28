@@ -1,6 +1,11 @@
 import { DomesticGrid, PageHero } from "@/components/PageSections";
+import { getPublicItems } from "@backend/content";
 
-export default function IndiaPage() {
+export const dynamic = "force-dynamic";
+
+export default async function IndiaPage() {
+  const adminItems = await getPublicItems("domestic");
+
   return (
     <>
       <PageHero
@@ -9,7 +14,7 @@ export default function IndiaPage() {
         text="Royal palaces, beaches, backwaters, mountains and island escapes with stays selected for comfort and memorable experiences."
         image="/images/destinations/udaipur.jpg"
       />
-      <DomesticGrid />
+      <DomesticGrid items={adminItems} />
     </>
   );
 }

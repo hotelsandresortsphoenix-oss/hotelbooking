@@ -1,6 +1,11 @@
 import { HotelsGrid, PageHero } from "@/components/PageSections";
+import { getPublicItems } from "@backend/content";
 
-export default function HotelsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function HotelsPage() {
+  const adminItems = await getPublicItems("hotel");
+
   return (
     <>
       <PageHero
@@ -9,7 +14,7 @@ export default function HotelsPage() {
         text="Explore iconic city hotels, palace stays, island addresses and mountain retreats selected for memorable hospitality."
         image="/images/destinations/oberoi-udaivilas.jpg"
       />
-      <HotelsGrid />
+      <HotelsGrid items={adminItems} />
     </>
   );
 }

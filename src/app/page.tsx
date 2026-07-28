@@ -1,50 +1,44 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "motion/react";
-import { useState } from "react";
 import {
   Compass,
   MessageCircle,
-  Search,
   ArrowUpRight,
-  ArrowRight,
   Ship,
   Phone,
   Mail,
   Clock3,
-  Send,
+  MapPin,
+  BadgeCheck,
 } from "lucide-react";
 import { Reveal, BurstText, ImageReveal, AutoCarousel, StackCard, Counter } from "@/components/ui";
-import { useToast } from "@/components/ToastProvider";
+import { HomeContactForm, HomeResortTabs, HomeSearchForm } from "@/components/HomeInteractions";
+import { getPublicItems } from "@backend/content";
 import {
   heroStats,
-  domesticDestinations,
-  internationalStack,
-  hotels,
   resortTabs,
-  resorts,
-  cruiseLines,
-  packages,
   benefits,
   testimonials,
   blogPosts,
 } from "@/lib/data";
 
-export default function Home() {
-  const { showToast } = useToast();
-  const [activeTab, setActiveTab] = useState(0);
+export const dynamic = "force-dynamic";
 
-  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    showToast("Share your details and we will prepare suitable travel options.");
-  };
-
-  const handleContactSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    showToast("Thank you. Your enquiry has been recorded.");
-    event.currentTarget.reset();
-  };
+export default async function Home() {
+  const [
+    domesticDestinations,
+    internationalStack,
+    hotels,
+    resorts,
+    cruiseLines,
+    packages,
+  ] = await Promise.all([
+    getPublicItems("domestic"),
+    getPublicItems("international"),
+    getPublicItems("hotel"),
+    getPublicItems("resort"),
+    getPublicItems("cruise"),
+    getPublicItems("package"),
+  ]);
 
   return (
     <>
@@ -94,63 +88,7 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <motion.form
-            onSubmit={handleSearchSubmit}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-[3] mt-14 w-full rounded-[20px] border border-white/18 bg-black/72 backdrop-blur-xl p-3 shadow-[0_24px_70px_rgba(0,0,0,0.24)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr_0.8fr_auto] divide-y divide-white/10 lg:divide-y-0 lg:divide-x lg:divide-white/10"
-          >
-            <div className="px-4 py-2.5">
-              <label htmlFor="destination" className="block text-[11px] font-bold text-amber-200 uppercase tracking-[0.15em] mb-1">
-                Destination
-              </label>
-              <select id="destination" name="destination" className="w-full bg-transparent text-sm text-white outline-none [&>option]:text-neutral-900">
-                <option>Choose a destination</option>
-                <option>Udaipur</option>
-                <option>Goa</option>
-                <option>Kerala</option>
-                <option>Maldives</option>
-                <option>Dubai</option>
-                <option>Bali</option>
-              </select>
-            </div>
-
-            <div className="px-4 py-2.5">
-              <label htmlFor="checkin" className="block text-[11px] font-bold text-amber-200 uppercase tracking-[0.15em] mb-1">
-                Check-in
-              </label>
-              <input id="checkin" name="checkin" type="date" className="w-full bg-transparent text-sm text-white outline-none [color-scheme:dark]" />
-            </div>
-
-            <div className="px-4 py-2.5">
-              <label htmlFor="checkout" className="block text-[11px] font-bold text-amber-200 uppercase tracking-[0.15em] mb-1">
-                Check-out
-              </label>
-              <input id="checkout" name="checkout" type="date" className="w-full bg-transparent text-sm text-white outline-none [color-scheme:dark]" />
-            </div>
-
-            <div className="px-4 py-2.5">
-              <label htmlFor="travellers" className="block text-[11px] font-bold text-amber-200 uppercase tracking-[0.15em] mb-1">
-                Travellers
-              </label>
-              <select id="travellers" name="travellers" className="w-full bg-transparent text-sm text-white outline-none [&>option]:text-neutral-900">
-                <option>2 Guests</option>
-                <option>1 Guest</option>
-                <option>3 Guests</option>
-                <option>4+ Guests</option>
-              </select>
-            </div>
-
-            <div className="p-1.5 lg:p-0 lg:pl-3 flex items-stretch">
-              <button
-                type="submit"
-                className="w-full lg:w-auto lg:min-w-[150px] inline-flex items-center justify-center gap-2 rounded-2xl lg:rounded-[14px] bg-gradient-to-br from-amber-200 via-amber-400 to-amber-700 px-6 py-3 text-sm font-bold text-[#17110a] shadow-[0_14px_34px_rgba(217,170,78,0.24)] hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(217,170,78,0.34)] transition-all"
-              >
-                <Search size={18} /> Search
-              </button>
-            </div>
-          </motion.form>
+          <HomeSearchForm />
         </div>
       </section>
 
@@ -178,7 +116,7 @@ export default function Home() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {domesticDestinations.slice(0, 3).map((d) => {
-              const Icon = d.icon;
+              const Icon = MapPin;
               return (
                 <Reveal key={d.title}>
                   <article className="diamond-card group relative overflow-hidden h-80">
@@ -186,7 +124,7 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                     <div className="diamond-card-content absolute bottom-0 p-5 w-full">
                       <span className="badge inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs backdrop-blur">
-                        <Icon size={13} /> {d.badge}
+                        <Icon size={13} /> {d.badge ?? "Destination"}
                       </span>
                       <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl font-semibold">{d.title}</h3>
                       <p className="mt-1 text-sm text-neutral-300">{d.text}</p>
@@ -223,7 +161,16 @@ export default function Home() {
 
           <div className="relative">
             {internationalStack.slice(0, 3).map((item, i) => (
-              <StackCard key={item.title} index={i} {...item} />
+              <StackCard
+                key={item.title}
+                index={i}
+                img={item.img}
+                alt={item.alt}
+                badge={item.badge ?? "International"}
+                title={item.title}
+                text={item.text}
+                cta={item.cta}
+              />
             ))}
           </div>
         </div>
@@ -258,12 +205,12 @@ export default function Home() {
                 <div className="relative h-56">
                   <ImageReveal src={h.img} alt={h.alt} className="h-full w-full object-cover" />
                   <span className="absolute top-3 left-3 rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-neutral-900 z-10">
-                    {h.label}
+                    {h.label ?? "Featured stay"}
                   </span>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between text-xs text-neutral-400">
-                    <span>{h.location}</span>
+                    <span>{h.location ?? "Phoenix collection"}</span>
                     <span className="text-amber-400">★★★★★</span>
                   </div>
                   <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl font-semibold">{h.title}</h3>
@@ -295,21 +242,8 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <Reveal className="flex flex-wrap gap-3 mb-10">
-            {resortTabs.map((tab, i) => (
-              <button
-                key={tab}
-                type="button"
-                onClick={() => setActiveTab(i)}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  activeTab === i
-                    ? "bg-amber-500 text-neutral-900"
-                    : "bg-white border border-neutral-300 text-neutral-600 hover:border-amber-400"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+          <Reveal>
+            <HomeResortTabs tabs={resortTabs} />
           </Reveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -319,13 +253,13 @@ export default function Home() {
                   <div className="relative h-56">
                     <ImageReveal src={r.img} alt={r.alt} className="h-full w-full object-cover" />
                     <span className="absolute top-3 left-3 rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-neutral-900 z-10">
-                      {r.label}
+                      {r.label ?? "Luxury resort"}
                     </span>
                   </div>
                   <div className="p-5">
                     <div className="flex items-center justify-between text-xs text-neutral-500">
-                      <span>{r.location}</span>
-                      <span className="rounded-full bg-amber-100 text-amber-700 px-2.5 py-0.5">{r.tag}</span>
+                      <span>{r.location ?? "Phoenix collection"}</span>
+                      <span className="rounded-full bg-amber-100 text-amber-700 px-2.5 py-0.5">{r.tag ?? "Resort"}</span>
                     </div>
                     <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl font-semibold">{r.title}</h3>
                     <p className="mt-2 text-sm text-neutral-600">{r.text}</p>
@@ -381,7 +315,7 @@ export default function Home() {
 
             <div className="mt-14 grid sm:grid-cols-3 gap-8 text-left">
               {cruiseLines.map((c) => {
-                const Icon = c.icon;
+                const Icon = Ship;
                 return (
                   <article key={c.title} className="rounded-2xl bg-white/5 border border-white/10 p-6">
                     <Icon size={25} className="text-amber-400" />
@@ -411,7 +345,7 @@ export default function Home() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {packages.map((p) => {
-              const Icon = p.icon;
+              const Icon = BadgeCheck;
               return (
                 <Reveal key={p.title}>
                   <article className="rounded-2xl bg-neutral-900 border border-white/10 p-6 h-full">
@@ -421,7 +355,7 @@ export default function Home() {
                     <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold">{p.title}</h3>
                     <p className="mt-2 text-sm text-neutral-300">{p.text}</p>
                     <Link href="/contact" className="mt-4 inline-block text-sm text-amber-400 hover:text-amber-300">
-                      {p.cta}
+                      {p.cta ?? "Enquire now ->"}
                     </Link>
                   </article>
                 </Reveal>
@@ -589,54 +523,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal>
-            <form onSubmit={handleContactSubmit} className="bg-white text-neutral-900 rounded-2xl p-7 grid gap-5">
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div className="grid gap-1.5">
-                  <label htmlFor="name" className="text-xs font-semibold text-neutral-500">
-                    Full name
-                  </label>
-                  <input id="name" name="name" type="text" placeholder="Your name" required className="rounded-lg border border-neutral-300 px-3 py-2.5 text-sm" />
-                </div>
-                <div className="grid gap-1.5">
-                  <label htmlFor="phone" className="text-xs font-semibold text-neutral-500">
-                    Phone number
-                  </label>
-                  <input id="phone" name="phone" type="tel" placeholder="+91" required className="rounded-lg border border-neutral-300 px-3 py-2.5 text-sm" />
-                </div>
-                <div className="grid gap-1.5">
-                  <label htmlFor="email" className="text-xs font-semibold text-neutral-500">
-                    Email address
-                  </label>
-                  <input id="email" name="email" type="email" placeholder="name@example.com" required className="rounded-lg border border-neutral-300 px-3 py-2.5 text-sm" />
-                </div>
-                <div className="grid gap-1.5">
-                  <label htmlFor="tripType" className="text-xs font-semibold text-neutral-500">
-                    Travel interest
-                  </label>
-                  <select id="tripType" name="tripType" className="rounded-lg border border-neutral-300 px-3 py-2.5 text-sm">
-                    <option>Hotel booking</option>
-                    <option>Resort holiday</option>
-                    <option>Domestic package</option>
-                    <option>International package</option>
-                    <option>Cruise holiday</option>
-                    <option>Corporate retreat</option>
-                  </select>
-                </div>
-                <div className="grid gap-1.5 sm:col-span-2">
-                  <label htmlFor="message" className="text-xs font-semibold text-neutral-500">
-                    Tell us about your holiday
-                  </label>
-                  <textarea id="message" name="message" placeholder="Destination, dates, travellers and preferences" rows={4} className="rounded-lg border border-neutral-300 px-3 py-2.5 text-sm resize-none" />
-                </div>
-              </div>
-
-              <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-amber-400 transition-colors">
-                <Send size={18} /> Request My Quote
-              </button>
-              <p className="text-xs text-neutral-500">
-                Demo form: connect this form to your email, CRM or website backend before publishing.
-              </p>
-            </form>
+            <HomeContactForm />
           </Reveal>
         </div>
       </section>

@@ -1,6 +1,11 @@
 import { InternationalList, PageHero } from "@/components/PageSections";
+import { getPublicItems } from "@backend/content";
 
-export default function InternationalPage() {
+export const dynamic = "force-dynamic";
+
+export default async function InternationalPage() {
+  const adminItems = await getPublicItems("international");
+
   return (
     <>
       <PageHero
@@ -9,7 +14,7 @@ export default function InternationalPage() {
         text="From Maldives and Dubai to Bali, Singapore, Switzerland and Mauritius, explore global journeys shaped around your travel style."
         image="/images/destinations/maldives.jpg"
       />
-      <InternationalList />
+      <InternationalList items={adminItems} />
     </>
   );
 }

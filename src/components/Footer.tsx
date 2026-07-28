@@ -2,11 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { useToast } from "@/components/ToastProvider";
 
 export default function Footer() {
+  const pathname = usePathname();
   const { showToast } = useToast();
+
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
 
   const handleNewsletterSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

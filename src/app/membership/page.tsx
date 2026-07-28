@@ -1,6 +1,11 @@
-import { MembershipPlans, PageHero } from "@/components/PageSections";
+import { MembershipPlansList, PageHero } from "@/components/PageSections";
+import { getPublicItems } from "@backend/content";
 
-export default function MembershipPage() {
+export const dynamic = "force-dynamic";
+
+export default async function MembershipPage() {
+  const membershipPlans = await getPublicItems("membership");
+
   return (
     <>
       <PageHero
@@ -9,7 +14,7 @@ export default function MembershipPage() {
         text="Choose a membership plan for curated offers, priority assistance and added comfort across hotels, resorts and holidays."
         image="/images/destinations/hero-bg.jpg"
       />
-      <MembershipPlans />
+      <MembershipPlansList items={membershipPlans} />
     </>
   );
 }

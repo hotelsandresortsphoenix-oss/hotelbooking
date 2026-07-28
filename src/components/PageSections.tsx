@@ -1,16 +1,18 @@
 import Link from "next/link";
 import type React from "react";
-import { ArrowUpRight, BadgeCheck, CalendarCheck, Mail, Phone, Send, Ship } from "lucide-react";
-import { Reveal, ImageReveal, StackCard } from "@/components/ui";
 import {
-  cruiseLines,
-  domesticDestinations,
-  hotels,
-  internationalStack,
-  membershipTiers,
-  packages,
-  resorts,
-} from "@/lib/data";
+  ArrowUpRight,
+  BadgeCheck,
+  CalendarCheck,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  Ship,
+} from "lucide-react";
+import { Reveal, ImageReveal } from "@/components/ui";
+import type { PublicAdminItem } from "@backend/types";
+import { membershipTiers } from "@/lib/data";
 
 export function PageHero({
   eyebrow,
@@ -50,7 +52,11 @@ export function PageHero({
   );
 }
 
-export function DomesticGrid() {
+export function DomesticGrid({
+  items = [],
+}: {
+  items?: PublicAdminItem[];
+}) {
   return (
     <section className="bg-neutral-950 text-white py-20">
       <div className="mx-auto max-w-7xl px-4">
@@ -66,8 +72,9 @@ export function DomesticGrid() {
         </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {domesticDestinations.map((d) => {
-            const Icon = d.icon;
+          {items.map((d) => {
+            const Icon = MapPin;
+            const badge = "badge" in d && d.badge ? d.badge : "Destination";
             return (
               <Reveal key={d.title}>
                 <article className="diamond-card group relative overflow-hidden h-80">
@@ -75,7 +82,7 @@ export function DomesticGrid() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                   <div className="diamond-card-content absolute bottom-0 p-5 w-full">
                     <span className="badge inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs backdrop-blur">
-                      <Icon size={13} /> {d.badge}
+                      <Icon size={13} /> {badge}
                     </span>
                     <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl font-semibold">{d.title}</h3>
                     <p className="mt-1 text-sm text-neutral-300">{d.text}</p>
@@ -93,7 +100,11 @@ export function DomesticGrid() {
   );
 }
 
-export function InternationalList() {
+export function InternationalList({
+  items = [],
+}: {
+  items?: PublicAdminItem[];
+}) {
   return (
     <section className="bg-neutral-50 py-20">
       <div className="mx-auto max-w-7xl px-4">
@@ -108,17 +119,46 @@ export function InternationalList() {
           </p>
         </Reveal>
 
-        <div className="relative">
-          {internationalStack.map((item, i) => (
-            <StackCard key={item.title} index={i} {...item} />
-          ))}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((item) => {
+            const badge = item.badge || "International";
+
+            return (
+              <Reveal key={item.title}>
+                <article className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm h-full">
+                  <div className="relative h-56">
+                    <ImageReveal src={item.img} alt={item.alt} className="h-full w-full object-cover" />
+                    <span className="absolute top-3 left-3 z-10 rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-neutral-900">
+                      {badge}
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-neutral-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-neutral-600">{item.text}</p>
+                    <div className="mt-4 flex items-center justify-between text-sm">
+                      <strong className="text-neutral-900">Custom itinerary</strong>
+                      <Link href="/contact" className="text-amber-600 hover:text-amber-700">
+                        Enquire now -&gt;
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-export function HotelsGrid() {
+export function HotelsGrid({
+  items = [],
+}: {
+  items?: PublicAdminItem[];
+}) {
   return (
     <section className="bg-neutral-950 text-white py-20">
       <div className="mx-auto max-w-7xl px-4">
@@ -133,18 +173,22 @@ export function HotelsGrid() {
         </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {hotels.map((h) => (
+          {items.map((h) => {
+            const label = "label" in h && h.label ? h.label : "Featured stay";
+            const location = "location" in h && h.location ? h.location : "Phoenix collection";
+
+            return (
             <Reveal key={h.title}>
               <article className="overflow-hidden rounded-2xl bg-neutral-900 border border-white/10 h-full">
                 <div className="relative h-56">
                   <ImageReveal src={h.img} alt={h.alt} className="h-full w-full object-cover" />
                   <span className="absolute top-3 left-3 z-10 rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-neutral-900">
-                    {h.label}
+                    {label}
                   </span>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between text-xs text-neutral-400">
-                    <span>{h.location}</span>
+                    <span>{location}</span>
                     <span className="text-amber-400">5 star</span>
                   </div>
                   <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl font-semibold">{h.title}</h3>
@@ -158,14 +202,19 @@ export function HotelsGrid() {
                 </div>
               </article>
             </Reveal>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-export function ResortsGrid() {
+export function ResortsGrid({
+  items = [],
+}: {
+  items?: PublicAdminItem[];
+}) {
   return (
     <section className="bg-neutral-50 py-20">
       <div className="mx-auto max-w-7xl px-4">
@@ -180,19 +229,24 @@ export function ResortsGrid() {
         </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {resorts.map((r) => (
+          {items.map((r) => {
+            const label = "label" in r && r.label ? r.label : "Luxury resort";
+            const location = "location" in r && r.location ? r.location : "Phoenix collection";
+            const tag = "tag" in r && r.tag ? r.tag : "Resort";
+
+            return (
             <Reveal key={r.title}>
               <article className="rounded-2xl overflow-hidden bg-white border border-neutral-200 shadow-sm h-full">
                 <div className="relative h-56">
                   <ImageReveal src={r.img} alt={r.alt} className="h-full w-full object-cover" />
                   <span className="absolute top-3 left-3 rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-neutral-900 z-10">
-                    {r.label}
+                    {label}
                   </span>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between text-xs text-neutral-500">
-                    <span>{r.location}</span>
-                    <span className="rounded-full bg-amber-100 text-amber-700 px-2.5 py-0.5">{r.tag}</span>
+                    <span>{location}</span>
+                    <span className="rounded-full bg-amber-100 text-amber-700 px-2.5 py-0.5">{tag}</span>
                   </div>
                   <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl font-semibold">{r.title}</h3>
                   <p className="mt-2 text-sm text-neutral-600">{r.text}</p>
@@ -205,14 +259,19 @@ export function ResortsGrid() {
                 </div>
               </article>
             </Reveal>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-export function CruisesPanel() {
+export function CruisesPanel({
+  lines = [],
+}: {
+  lines?: PublicAdminItem[];
+}) {
   return (
     <section
       className="relative grid items-center text-white overflow-hidden"
@@ -243,8 +302,8 @@ export function CruisesPanel() {
           </div>
 
           <div className="mt-14 grid sm:grid-cols-3 gap-8 text-left">
-            {cruiseLines.map((c) => {
-              const Icon = c.icon;
+            {lines.map((c) => {
+              const Icon = Ship;
               return (
                 <article key={c.title} className="rounded-2xl bg-white/5 border border-white/10 p-6">
                   <Icon size={25} className="text-amber-400" />
@@ -260,7 +319,11 @@ export function CruisesPanel() {
   );
 }
 
-export function HolidayStyles() {
+export function HolidayStyles({
+  items = [],
+}: {
+  items?: PublicAdminItem[];
+}) {
   return (
     <section className="bg-neutral-950 text-white py-20">
       <div className="mx-auto max-w-7xl px-4">
@@ -275,8 +338,9 @@ export function HolidayStyles() {
         </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {packages.map((p) => {
-            const Icon = p.icon;
+          {items.map((p) => {
+            const Icon = BadgeCheck;
+            const cta = "cta" in p && p.cta ? p.cta : "Enquire now ->";
             return (
               <Reveal key={p.title}>
                 <article className="rounded-2xl bg-neutral-900 border border-white/10 p-6 h-full">
@@ -286,7 +350,7 @@ export function HolidayStyles() {
                   <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold">{p.title}</h3>
                   <p className="mt-2 text-sm text-neutral-300">{p.text}</p>
                   <Link href="/contact" className="mt-4 inline-block text-sm text-amber-400 hover:text-amber-300">
-                    Enquire now -&gt;
+                    {cta}
                   </Link>
                 </article>
               </Reveal>
@@ -299,6 +363,28 @@ export function HolidayStyles() {
 }
 
 export function MembershipPlans() {
+  return <MembershipPlansList items={membershipTiers} />;
+}
+
+type MembershipPlanItem = {
+  _id?: string;
+  name?: string;
+  title?: string;
+  price?: string;
+  tagline?: string;
+  text?: string;
+  perks?: string[];
+  cta?: string;
+  featured?: boolean;
+};
+
+export function MembershipPlansList({
+  items = membershipTiers,
+}: {
+  items?: MembershipPlanItem[];
+}) {
+  const planItems: MembershipPlanItem[] = items.length ? items : membershipTiers;
+
   return (
     <section className="bg-neutral-50 py-20">
       <div className="mx-auto max-w-7xl px-4">
@@ -313,8 +399,13 @@ export function MembershipPlans() {
         </Reveal>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {membershipTiers.map((tier) => (
-            <Reveal key={tier.name}>
+          {planItems.map((tier) => {
+            const name = tier.name || tier.title || "Membership";
+            const tagline = tier.tagline || tier.text || "";
+            const cta = tier.cta || `Join ${name}`;
+
+            return (
+            <Reveal key={tier._id || name}>
               <article
                 className={`rounded-2xl border p-7 h-full ${
                   tier.featured
@@ -323,12 +414,12 @@ export function MembershipPlans() {
                 }`}
               >
                 <span className={`text-xs font-semibold tracking-widest uppercase ${tier.featured ? "text-amber-300" : "text-amber-600"}`}>
-                  {tier.name}
+                  {name}
                 </span>
                 <h3 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold">{tier.price}</h3>
-                <p className={`mt-2 text-sm ${tier.featured ? "text-neutral-300" : "text-neutral-600"}`}>{tier.tagline}</p>
+                <p className={`mt-2 text-sm ${tier.featured ? "text-neutral-300" : "text-neutral-600"}`}>{tagline}</p>
                 <ul className="mt-6 space-y-3 text-sm">
-                  {tier.perks.map((perk) => (
+                  {(tier.perks || []).map((perk) => (
                     <li key={perk} className="flex gap-2">
                       <BadgeCheck size={18} className={tier.featured ? "text-amber-300 shrink-0" : "text-amber-600 shrink-0"} />
                       <span>{perk}</span>
@@ -343,11 +434,12 @@ export function MembershipPlans() {
                       : "bg-neutral-900 text-white hover:bg-neutral-800"
                   }`}
                 >
-                  Join {tier.name}
+                  {cta}
                 </Link>
               </article>
             </Reveal>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>
