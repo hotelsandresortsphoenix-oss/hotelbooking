@@ -1,5 +1,6 @@
 import { randomBytes } from "crypto";
 import { mkdir, readFile, writeFile } from "fs/promises";
+import os from "os";
 import path from "path";
 import type { DefaultAdminItem } from "./defaultItems";
 import type {
@@ -17,7 +18,7 @@ type LocalDb = {
   products: PublicAdminProduct[];
 };
 
-const dbDir = path.join(process.cwd(), ".local-db");
+const dbDir = path.join(os.tmpdir(), "hotelbooking-local-db");
 const dbPath = path.join(dbDir, "admin.json");
 
 function createEmptyDb(): LocalDb {
