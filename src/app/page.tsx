@@ -494,7 +494,7 @@ export default async function Home() {
                 </div>
                 <div>
                   <strong className="block text-sm">Call or WhatsApp</strong>
-                  <span className="text-sm text-neutral-400">+91 99999 99999</span>
+                  <span className="text-sm text-neutral-400">+91 95868 17554</span>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -503,7 +503,7 @@ export default async function Home() {
                 </div>
                 <div>
                   <strong className="block text-sm">Email</strong>
-                  <span className="text-sm text-neutral-400">reservations@phoenixhotelsresorts.com</span>
+                  <span className="text-sm text-neutral-400">hotelsandresortsphoenix@gmail.com</span>
                 </div>
               </div>
               <div className="flex items-center gap-3">

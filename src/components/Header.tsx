@@ -33,10 +33,10 @@ export default function Header() {
         <div className="mx-auto max-w-7xl px-4 min-h-[38px] flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
-              <Phone size={14} /> +91 99999 99999
+              <Phone size={14} /> +91 95868 17554
             </span>
             <span className="hidden sm:flex items-center gap-2">
-              <Mail size={14} /> reservations@phoenixhotelsresorts.com
+              <Mail size={14} /> hotelsandresortsphoenix@gmail.com
             </span>
           </div>
           <span className="flex items-center gap-2 text-amber-300">

@@ -23,7 +23,7 @@ export default function FloatingButtons() {
   return (
     <>
       <a
-        href="https://wa.me/919999999999"
+        href="https://wa.me/919586817554"
         target="_blank"
         rel="noopener"
         aria-label="Chat with Phoenix Hotels and Resorts on WhatsApp"
