@@ -1,3 +1,4 @@
+import { put } from "@vercel/blob";
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import type { NextRequest } from "next/server";
@@ -52,11 +53,20 @@ export async function POST(request: NextRequest) {
     return jsonError("Image must be 5MB or smaller.");
   }
 
-  const uploadDir = path.join(process.cwd(), "public", "images", "uploads");
-  await mkdir(uploadDir, { recursive: true });
-
   const ext = safeExtension(file.name, file.type);
   const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    const blob = await put(`uploads/${fileName}`, file, {
+      access: "public",
+      contentType: file.type,
+    });
+
+    return Response.json({ path: blob.url }, { status: 201 });
+  }
+
+  const uploadDir = path.join(process.cwd(), "public", "images", "uploads");
+  await mkdir(uploadDir, { recursive: true });
   const filePath = path.join(uploadDir, fileName);
 
   const bytes = await file.arrayBuffer();
