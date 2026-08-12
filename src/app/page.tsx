@@ -406,6 +406,62 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Partners */}
+      <section className="bg-white py-16 border-t border-neutral-100">
+        <div className="mx-auto max-w-7xl px-4">
+          <Reveal className="max-w-2xl mb-10">
+            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
+              Our airline, travel and hospitality partners.
+            </h2>
+          </Reveal>
+
+          <div className="grid gap-8 sm:grid-cols-3">
+            <Reveal>
+              <h3 className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-4">Airline partners</h3>
+              <div className="flex flex-wrap gap-3">
+                {["Indigo", "Air Asia", "Air India Express", "Air India"].map((name) => (
+                  <span key={name} className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-sm">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <h3 className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-4">Travel partners</h3>
+              <div className="flex flex-wrap gap-3">
+                {["MakeMyTrip", "Booking.com", "Goibibo", "Trivago"].map((name) => (
+                  <span key={name} className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-sm">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <h3 className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-4">Preferred brands</h3>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  "Royal Orchid Hotels",
+                  "The Fern Hotels & Resorts",
+                  "Sarovar Portico",
+                  "Ramada by Wyndham",
+                  "Radisson Blu",
+                  "Summit Hotel and Resort",
+                  "DLS Resorts",
+                  "Perfect Stayz Group",
+                ].map((name) => (
+                  <span key={name} className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-sm">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="bg-neutral-950 text-white py-20">
         <div className="mx-auto max-w-7xl px-4">
