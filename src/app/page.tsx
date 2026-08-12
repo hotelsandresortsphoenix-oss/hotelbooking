@@ -26,6 +26,59 @@ import {
 
 export const dynamic = "force-dynamic";
 
+type Partner = { name: string; logo?: string };
+
+const airlinePartners: Partner[] = [
+  { name: "Indigo", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IndiGo.svg/250px-IndiGo.svg.png" },
+  { name: "Air Asia", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/AirAsia_New_Logo.svg/250px-AirAsia_New_Logo.svg.png" },
+  { name: "Air India Express", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Air_India_Express_logo.svg/250px-Air_India_Express_logo.svg.png" },
+  { name: "Air India", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Air_India_2023.svg/330px-Air_India_2023.svg.png" },
+];
+
+const travelPartners: Partner[] = [
+  { name: "MakeMyTrip", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Makemytrip_logo.svg/250px-Makemytrip_logo.svg.png" },
+  { name: "Booking.com", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/250px-Booking.com_logo.svg.png" },
+  { name: "Goibibo", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Goibibo_Logo.svg/250px-Goibibo_Logo.svg.png" },
+  { name: "Trivago", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Trivago_logo_2023.svg/250px-Trivago_logo_2023.svg.png" },
+];
+
+const preferredBrands: Partner[] = [
+  { name: "Royal Orchid Hotels" },
+  { name: "The Fern Hotels & Resorts" },
+  { name: "Sarovar Portico" },
+  { name: "Ramada by Wyndham", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ramada_Worldwide_logo.svg/250px-Ramada_Worldwide_logo.svg.png" },
+  { name: "Radisson Blu", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Radisson_Blu_logo.svg/250px-Radisson_Blu_logo.svg.png" },
+  { name: "Summit Hotel and Resort" },
+  { name: "DLS Resorts" },
+  { name: "Perfect Stayz Group" },
+];
+
+function PartnerCard({
+  partner,
+  fallbackIcon,
+}: {
+  partner: Partner;
+  fallbackIcon: React.ReactNode;
+}) {
+  return (
+    <div className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 text-center shadow-sm transition hover:border-amber-300 hover:shadow-md">
+      {partner.logo ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={partner.logo}
+          alt={`${partner.name} logo`}
+          className="h-10 max-w-[120px] object-contain"
+        />
+      ) : (
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
+          {fallbackIcon}
+        </div>
+      )}
+      <strong className="text-sm font-semibold text-neutral-800">{partner.name}</strong>
+    </div>
+  );
+}
+
 export default async function Home() {
   const [
     domesticDestinations,
@@ -106,14 +159,9 @@ export default async function Home() {
           </Reveal>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            {["Indigo", "Air Asia", "Air India Express", "Air India"].map((name) => (
-              <Reveal key={name}>
-                <div className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 text-center shadow-sm transition hover:border-amber-300 hover:shadow-md">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
-                    <Plane size={22} />
-                  </div>
-                  <strong className="text-sm font-semibold text-neutral-800">{name}</strong>
-                </div>
+            {airlinePartners.map((partner) => (
+              <Reveal key={partner.name}>
+                <PartnerCard partner={partner} fallbackIcon={<Plane size={22} />} />
               </Reveal>
             ))}
           </div>
@@ -131,14 +179,9 @@ export default async function Home() {
           </Reveal>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            {["MakeMyTrip", "Booking.com", "Goibibo", "Trivago"].map((name) => (
-              <Reveal key={name}>
-                <div className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 text-center shadow-sm transition hover:border-amber-300 hover:shadow-md">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
-                    <Globe2 size={22} />
-                  </div>
-                  <strong className="text-sm font-semibold text-neutral-800">{name}</strong>
-                </div>
+            {travelPartners.map((partner) => (
+              <Reveal key={partner.name}>
+                <PartnerCard partner={partner} fallbackIcon={<Globe2 size={22} />} />
               </Reveal>
             ))}
           </div>
@@ -156,23 +199,9 @@ export default async function Home() {
           </Reveal>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            {[
-              "Royal Orchid Hotels",
-              "The Fern Hotels & Resorts",
-              "Sarovar Portico",
-              "Ramada by Wyndham",
-              "Radisson Blu",
-              "Summit Hotel and Resort",
-              "DLS Resorts",
-              "Perfect Stayz Group",
-            ].map((name) => (
-              <Reveal key={name}>
-                <div className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 text-center shadow-sm transition hover:border-amber-300 hover:shadow-md">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
-                    <Building2 size={22} />
-                  </div>
-                  <strong className="text-sm font-semibold text-neutral-800">{name}</strong>
-                </div>
+            {preferredBrands.map((partner) => (
+              <Reveal key={partner.name}>
+                <PartnerCard partner={partner} fallbackIcon={<Building2 size={22} />} />
               </Reveal>
             ))}
           </div>
