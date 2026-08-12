@@ -43,9 +43,9 @@ const travelPartners: Partner[] = [
 ];
 
 const preferredBrands: Partner[] = [
-  { name: "Royal Orchid Hotels" },
-  { name: "The Fern Hotels & Resorts" },
-  { name: "Sarovar Portico" },
+  { name: "Royal Orchid Hotels", logo: "https://www.royalorchidhotels.com/images/logo-2.webp" },
+  { name: "The Fern Hotels & Resorts", logo: "https://www.fernhotels.com/images/logo.svg" },
+  { name: "Sarovar Portico", logo: "https://assets.simplotel.com/simplotel/image/upload/x_0,y_0,w_1500,h_751,r_0,c_crop,q_90/w_355,h_200,f_auto,c_fit/sarovar-hotels---indias-leading-hotel-chain/Sarovar_Hotels_Logo_qubx1f" },
   { name: "Ramada by Wyndham", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ramada_Worldwide_logo.svg/250px-Ramada_Worldwide_logo.svg.png" },
   { name: "Radisson Blu", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Radisson_Blu_logo.svg/250px-Radisson_Blu_logo.svg.png" },
   { name: "Summit Hotel and Resort" },
