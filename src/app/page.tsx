@@ -9,6 +9,9 @@ import {
   Clock3,
   MapPin,
   BadgeCheck,
+  Plane,
+  Globe2,
+  Building2,
 } from "lucide-react";
 import { Reveal, BurstText, ImageReveal, AutoCarousel, StackCard, Counter } from "@/components/ui";
 import { HomeContactForm, HomeResortTabs, HomeSearchForm } from "@/components/HomeInteractions";
@@ -89,6 +92,90 @@ export default async function Home() {
           </Reveal>
 
           <HomeSearchForm />
+        </div>
+      </section>
+
+      {/* Airline partners */}
+      <section className="bg-white py-16 border-t border-neutral-100">
+        <div className="mx-auto max-w-7xl px-4">
+          <Reveal className="max-w-2xl mb-10">
+            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
+              Airline partners.
+            </h2>
+          </Reveal>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+            {["Indigo", "Air Asia", "Air India Express", "Air India"].map((name) => (
+              <Reveal key={name}>
+                <div className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 text-center shadow-sm transition hover:border-amber-300 hover:shadow-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
+                    <Plane size={22} />
+                  </div>
+                  <strong className="text-sm font-semibold text-neutral-800">{name}</strong>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Travel partners */}
+      <section className="bg-neutral-50 py-16">
+        <div className="mx-auto max-w-7xl px-4">
+          <Reveal className="max-w-2xl mb-10">
+            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
+              Travel partners.
+            </h2>
+          </Reveal>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+            {["MakeMyTrip", "Booking.com", "Goibibo", "Trivago"].map((name) => (
+              <Reveal key={name}>
+                <div className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 text-center shadow-sm transition hover:border-amber-300 hover:shadow-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
+                    <Globe2 size={22} />
+                  </div>
+                  <strong className="text-sm font-semibold text-neutral-800">{name}</strong>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Preferred brands */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-4">
+          <Reveal className="max-w-2xl mb-10">
+            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
+              Preferred brands.
+            </h2>
+          </Reveal>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+            {[
+              "Royal Orchid Hotels",
+              "The Fern Hotels & Resorts",
+              "Sarovar Portico",
+              "Ramada by Wyndham",
+              "Radisson Blu",
+              "Summit Hotel and Resort",
+              "DLS Resorts",
+              "Perfect Stayz Group",
+            ].map((name) => (
+              <Reveal key={name}>
+                <div className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 text-center shadow-sm transition hover:border-amber-300 hover:shadow-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
+                    <Building2 size={22} />
+                  </div>
+                  <strong className="text-sm font-semibold text-neutral-800">{name}</strong>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -403,62 +490,6 @@ export default async function Home() {
               })}
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Partners */}
-      <section className="bg-white py-16 border-t border-neutral-100">
-        <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="max-w-2xl mb-10">
-            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
-              Our airline, travel and hospitality partners.
-            </h2>
-          </Reveal>
-
-          <div className="grid gap-8 sm:grid-cols-3">
-            <Reveal>
-              <h3 className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-4">Airline partners</h3>
-              <div className="flex flex-wrap gap-3">
-                {["Indigo", "Air Asia", "Air India Express", "Air India"].map((name) => (
-                  <span key={name} className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-sm">
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <h3 className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-4">Travel partners</h3>
-              <div className="flex flex-wrap gap-3">
-                {["MakeMyTrip", "Booking.com", "Goibibo", "Trivago"].map((name) => (
-                  <span key={name} className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-sm">
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <h3 className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-4">Preferred brands</h3>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  "Royal Orchid Hotels",
-                  "The Fern Hotels & Resorts",
-                  "Sarovar Portico",
-                  "Ramada by Wyndham",
-                  "Radisson Blu",
-                  "Summit Hotel and Resort",
-                  "DLS Resorts",
-                  "Perfect Stayz Group",
-                ].map((name) => (
-                  <span key={name} className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-sm">
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-          </div>
         </div>
       </section>
 
