@@ -36,7 +36,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Phoenix Hotels & Resorts" }],
   robots: "index, follow",
   icons: {
-    icon: "/images/logo.jpg",
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title: "Phoenix Hotels & Resorts | Travel Beyond Ordinary",
