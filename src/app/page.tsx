@@ -48,8 +48,8 @@ const preferredBrands: Partner[] = [
   { name: "Sarovar Portico", logo: "https://assets.simplotel.com/simplotel/image/upload/x_0,y_0,w_1500,h_751,r_0,c_crop,q_90/w_355,h_200,f_auto,c_fit/sarovar-hotels---indias-leading-hotel-chain/Sarovar_Hotels_Logo_qubx1f" },
   { name: "Ramada by Wyndham", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ramada_Worldwide_logo.svg/250px-Ramada_Worldwide_logo.svg.png" },
   { name: "Radisson Blu", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Radisson_Blu_logo.svg/250px-Radisson_Blu_logo.svg.png" },
-  { name: "Summit Hotel and Resort" },
-  { name: "DLS Resorts" },
+  { name: "Summit Hotel and Resort", logo: "/images/partners/summit-hotel-and-resort.avif" },
+  { name: "DLS Resorts", logo: "/images/partners/dls-resorts.avif" },
   { name: "Perfect Stayz Group", logo: "https://www.perfectstayz.com/images/perfectstayz.png" },
 ];
 
