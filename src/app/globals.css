@@ -145,6 +145,44 @@ body {
   }
 }
 
+/* Partner logo marquee */
+.partner-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+.partner-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: partnerMarquee var(--marquee-duration, 30s) linear infinite;
+}
+
+.partner-marquee:hover .partner-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes partnerMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 620px) {
   .diamond-card {
     clip-path: polygon(

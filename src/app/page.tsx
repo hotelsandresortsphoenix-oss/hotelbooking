@@ -79,6 +79,33 @@ function PartnerCard({
   );
 }
 
+function PartnerMarquee({
+  partners,
+  fallbackIcon,
+  durationSeconds = 30,
+}: {
+  partners: Partner[];
+  fallbackIcon: React.ReactNode;
+  durationSeconds?: number;
+}) {
+  const loop = [...partners, ...partners];
+
+  return (
+    <div
+      className="partner-marquee"
+      style={{ "--marquee-duration": `${durationSeconds}s` } as React.CSSProperties}
+    >
+      <div className="partner-marquee-track">
+        {loop.map((partner, index) => (
+          <div key={`${partner.name}-${index}`} className="w-64 flex-shrink-0 px-2.5">
+            <PartnerCard partner={partner} fallbackIcon={fallbackIcon} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default async function Home() {
   const [
     domesticDestinations,
@@ -158,13 +185,7 @@ export default async function Home() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            {airlinePartners.map((partner) => (
-              <Reveal key={partner.name}>
-                <PartnerCard partner={partner} fallbackIcon={<Plane size={22} />} />
-              </Reveal>
-            ))}
-          </div>
+          <PartnerMarquee partners={airlinePartners} fallbackIcon={<Plane size={22} />} durationSeconds={22} />
         </div>
       </section>
 
@@ -178,13 +199,7 @@ export default async function Home() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            {travelPartners.map((partner) => (
-              <Reveal key={partner.name}>
-                <PartnerCard partner={partner} fallbackIcon={<Globe2 size={22} />} />
-              </Reveal>
-            ))}
-          </div>
+          <PartnerMarquee partners={travelPartners} fallbackIcon={<Globe2 size={22} />} durationSeconds={22} />
         </div>
       </section>
 
@@ -198,13 +213,7 @@ export default async function Home() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            {preferredBrands.map((partner) => (
-              <Reveal key={partner.name}>
-                <PartnerCard partner={partner} fallbackIcon={<Building2 size={22} />} />
-              </Reveal>
-            ))}
-          </div>
+          <PartnerMarquee partners={preferredBrands} fallbackIcon={<Building2 size={22} />} durationSeconds={36} />
         </div>
       </section>
 
