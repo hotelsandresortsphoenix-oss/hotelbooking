@@ -26,7 +26,7 @@ import {
 
 export const dynamic = "force-dynamic";
 
-type Partner = { name: string; logo?: string };
+type Partner = { name: string; logo?: string; logoOnDark?: boolean };
 
 const airlinePartners: Partner[] = [
   { name: "Indigo", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IndiGo.svg/250px-IndiGo.svg.png" },
@@ -48,7 +48,7 @@ const preferredBrands: Partner[] = [
   { name: "Sarovar Portico", logo: "https://assets.simplotel.com/simplotel/image/upload/x_0,y_0,w_1500,h_751,r_0,c_crop,q_90/w_355,h_200,f_auto,c_fit/sarovar-hotels---indias-leading-hotel-chain/Sarovar_Hotels_Logo_qubx1f" },
   { name: "Ramada by Wyndham", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ramada_Worldwide_logo.svg/250px-Ramada_Worldwide_logo.svg.png" },
   { name: "Radisson Blu", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Radisson_Blu_logo.svg/250px-Radisson_Blu_logo.svg.png" },
-  { name: "Summit Hotel and Resort", logo: "/images/partners/summit-hotel-and-resort.avif" },
+  { name: "Summit Hotel and Resort", logo: "/images/partners/summit-hotel-and-resort.avif", logoOnDark: true },
   { name: "DLS Resorts", logo: "/images/partners/dls-resorts.avif" },
   { name: "Perfect Stayz Group", logo: "https://www.perfectstayz.com/images/perfectstayz.png" },
 ];
@@ -63,12 +63,23 @@ function PartnerCard({
   return (
     <div className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-neutral-200 bg-white px-4 text-center shadow-sm transition hover:border-amber-300 hover:shadow-md">
       {partner.logo ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={partner.logo}
-          alt={`${partner.name} logo`}
-          className="h-10 max-w-[120px] object-contain"
-        />
+        partner.logoOnDark ? (
+          <div className="flex h-14 w-full max-w-[140px] items-center justify-center rounded-xl bg-neutral-900 px-3 py-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={partner.logo}
+              alt={`${partner.name} logo`}
+              className="h-9 max-w-full object-contain"
+            />
+          </div>
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={partner.logo}
+            alt={`${partner.name} logo`}
+            className="h-10 max-w-[120px] object-contain"
+          />
+        )
       ) : (
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
           {fallbackIcon}
