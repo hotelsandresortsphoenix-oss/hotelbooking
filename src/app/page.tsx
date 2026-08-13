@@ -175,48 +175,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Airline partners */}
-      <section className="bg-white py-16 border-t border-neutral-100">
-        <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="max-w-2xl mb-10">
-            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
-              Airline partners.
-            </h2>
-          </Reveal>
-
-          <PartnerMarquee partners={airlinePartners} fallbackIcon={<Plane size={22} />} durationSeconds={22} />
-        </div>
-      </section>
-
-      {/* Travel partners */}
-      <section className="bg-neutral-50 py-16">
-        <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="max-w-2xl mb-10">
-            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
-              Travel partners.
-            </h2>
-          </Reveal>
-
-          <PartnerMarquee partners={travelPartners} fallbackIcon={<Globe2 size={22} />} durationSeconds={22} />
-        </div>
-      </section>
-
-      {/* Preferred brands */}
-      <section className="bg-white py-16">
-        <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="max-w-2xl mb-10">
-            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
-              Preferred brands.
-            </h2>
-          </Reveal>
-
-          <PartnerMarquee partners={preferredBrands} fallbackIcon={<Building2 size={22} />} durationSeconds={36} />
-        </div>
-      </section>
-
       {/* Domestic teaser */}
       <section className="bg-neutral-950 text-white py-20">
         <div className="mx-auto max-w-7xl px-4">
@@ -650,6 +608,48 @@ export default async function Home() {
           <Reveal>
             <HomeContactForm />
           </Reveal>
+        </div>
+      </section>
+
+      {/* Airline partners */}
+      <section className="bg-white py-16 border-t border-neutral-100">
+        <div className="mx-auto max-w-7xl px-4">
+          <Reveal className="max-w-2xl mb-10">
+            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
+              Airline partners.
+            </h2>
+          </Reveal>
+
+          <PartnerMarquee partners={airlinePartners} fallbackIcon={<Plane size={22} />} durationSeconds={22} />
+        </div>
+      </section>
+
+      {/* Travel partners */}
+      <section className="bg-neutral-50 py-16">
+        <div className="mx-auto max-w-7xl px-4">
+          <Reveal className="max-w-2xl mb-10">
+            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
+              Travel partners.
+            </h2>
+          </Reveal>
+
+          <PartnerMarquee partners={travelPartners} fallbackIcon={<Globe2 size={22} />} durationSeconds={22} />
+        </div>
+      </section>
+
+      {/* Preferred brands */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-4">
+          <Reveal className="max-w-2xl mb-10">
+            <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Trusted network</span>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
+              Preferred brands.
+            </h2>
+          </Reveal>
+
+          <PartnerMarquee partners={preferredBrands} fallbackIcon={<Building2 size={22} />} durationSeconds={36} />
         </div>
       </section>
     </>
