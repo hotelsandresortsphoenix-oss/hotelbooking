@@ -50,7 +50,7 @@ const preferredBrands: Partner[] = [
   { name: "Radisson Blu", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Radisson_Blu_logo.svg/250px-Radisson_Blu_logo.svg.png" },
   { name: "Summit Hotel and Resort" },
   { name: "DLS Resorts" },
-  { name: "Perfect Stayz Group" },
+  { name: "Perfect Stayz Group", logo: "https://www.perfectstayz.com/images/perfectstayz.png" },
 ];
 
 function PartnerCard({
