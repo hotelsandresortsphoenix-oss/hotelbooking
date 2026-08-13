@@ -66,10 +66,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-neutral-800 pt-6 flex flex-col sm:flex-row justify-between gap-2 text-xs">
+        <div className="mt-12 border-t border-neutral-800 pt-6 flex flex-col gap-4 text-xs sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Phoenix Hotels & Resorts. All rights reserved.</span>
-          <span>Property and cruise names are shown for travel inspiration; availability and commercial terms require confirmation.</span>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href="/terms-of-use" className="hover:text-white">Terms of Use</Link>
+            <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
+            <Link href="/payment-policy" className="hover:text-white">Payment Policy</Link>
+          </div>
         </div>
+        <p className="mt-4 text-xs text-neutral-500">
+          Property and cruise names are shown for travel inspiration; availability and commercial terms require confirmation.
+        </p>
       </div>
     </footer>
   );
