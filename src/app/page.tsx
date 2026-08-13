@@ -606,7 +606,7 @@ export default async function Home() {
                 </div>
                 <div>
                   <strong className="block text-sm">Travel assistance</strong>
-                  <span className="text-sm text-neutral-400">Monday–Saturday, 9:30 AM–7:00 PM</span>
+                  <span className="text-sm text-neutral-400">Monday–Saturday, 10:00 AM–6:00 PM</span>
                 </div>
               </div>
             </div>
