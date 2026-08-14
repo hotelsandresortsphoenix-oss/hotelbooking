@@ -28,7 +28,7 @@ export default function TermsOfUsePage() {
         {
           heading: "Disclosure to Third Parties",
           paragraphs: [
-            "Phoenix Hotels & Resorts PVT. LTD. has the right to share personal information as required with third parties, mainly for matters relating to bookings, reservations, blocking, or any other activity initiated by users.",
+            "Phoenix Hotels & Resorts has the right to share personal information as required with third parties, mainly for matters relating to bookings, reservations, blocking, or any other activity initiated by users.",
           ],
         },
         {
@@ -40,7 +40,7 @@ export default function TermsOfUsePage() {
         {
           heading: "Service Providers and Partners",
           paragraphs: [
-            "Phoenix Hotels & Resorts PVT. LTD. may disclose personal information to companies that provide services such as data processing, customer data development, conducting customer research, and satisfaction surveys.",
+            "Phoenix Hotels & Resorts may disclose personal information to companies that provide services such as data processing, customer data development, conducting customer research, and satisfaction surveys.",
           ],
         },
         {
