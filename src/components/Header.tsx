@@ -36,7 +36,7 @@ export default function Header() {
               <Phone size={14} /> +91 95868 17554
             </span>
             <span className="hidden sm:flex items-center gap-2">
-              <Mail size={14} /> hotelsandresortsphoenix@gmail.com
+              <Mail size={14} /> info@phoenixhotelsandresort.in
             </span>
           </div>
           <span className="flex items-center gap-2 text-amber-300">

@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
           paragraphs: [
             "Phoenix Hotels & Resorts PVT. LTD. reserves the right to modify this policy at any time. We recommend users review this page periodically, as we are not responsible if users do not read the updated policy. However, we will notify all our customers about any changes made to the privacy policy through email or postal communication.",
             "If you have any questions or concerns, please feel free to contact us. We value your feedback and are eager to hear your thoughts on our privacy practices.",
-            "For more information, write to us at hotelsandresortsphoenix@gmail.com, and we will respond promptly.",
+            "For more information, write to us at info@phoenixhotelsandresort.in, and we will respond promptly.",
           ],
         },
       ]}

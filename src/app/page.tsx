@@ -597,7 +597,7 @@ export default async function Home() {
                 </div>
                 <div>
                   <strong className="block text-sm">Email</strong>
-                  <span className="text-sm text-neutral-400">hotelsandresortsphoenix@gmail.com</span>
+                  <span className="text-sm text-neutral-400">info@phoenixhotelsandresort.in</span>
                 </div>
               </div>
               <div className="flex items-center gap-3">
