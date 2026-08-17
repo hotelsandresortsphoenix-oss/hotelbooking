@@ -38,7 +38,7 @@ export default function Footer() {
               <li><Link href="/india" className="hover:text-white">Domestic destinations</Link></li>
               <li><Link href="/international" className="hover:text-white">International destinations</Link></li>
               <li><Link href="/hotels" className="hover:text-white">Luxury hotels</Link></li>
-              <li><Link href="/resorts" className="hover:text-white">Premium resorts</Link></li>
+              <li><Link href="/hotels#resorts" className="hover:text-white">Premium resorts</Link></li>
               <li><Link href="/cruises" className="hover:text-white">Cruise holidays</Link></li>
             </ul>
           </div>

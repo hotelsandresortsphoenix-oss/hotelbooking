@@ -370,7 +370,7 @@ export default async function Home() {
           </div>
 
           <Reveal className="mt-10 text-center">
-            <Link href="/resorts" className="inline-flex items-center gap-1.5 text-amber-600 hover:text-amber-700 font-medium">
+            <Link href="/hotels#resorts" className="inline-flex items-center gap-1.5 text-amber-600 hover:text-amber-700 font-medium">
               View all resorts <ArrowUpRight size={17} />
             </Link>
           </Reveal>
