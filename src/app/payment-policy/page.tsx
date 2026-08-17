@@ -118,7 +118,7 @@ export default function PaymentPolicyPage() {
         {
           heading: "9. Arbitration",
           paragraphs: [
-            "Disputes, if any, shall first be addressed to the resolution cell in Ahmedabad. If unresolved, they shall be settled by arbitration in Maharashtra, under the Arbitration and Conciliation Act, 1996. The arbitrator's award is final and binding.",
+            "Disputes, if any, shall first be addressed to the resolution cell in Baroda. If unresolved, they shall be settled by arbitration in Maharashtra, under the Arbitration and Conciliation Act, 1996. The arbitrator's award is final and binding.",
           ],
         },
         {
