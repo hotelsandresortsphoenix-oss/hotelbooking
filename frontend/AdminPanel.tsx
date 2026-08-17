@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Building2,
   ChevronLeft,
+  CreditCard,
   Crown,
   Eye,
   EyeOff,
@@ -42,7 +43,7 @@ type CategoryForm = typeof emptyCategoryForm;
 type SubCategoryForm = typeof emptySubCategoryForm;
 type ProductForm = typeof emptyProductForm;
 type CatalogType = "category" | "subcategory" | "product";
-type SectionId = "dashboard" | "catalog" | AdminItemCategory;
+type SectionId = "dashboard" | "catalog" | "payment-settings" | AdminItemCategory;
 
 const fieldClass =
   "w-full rounded-[18px] border border-[#ddd3c2] bg-white px-4 py-3 text-sm font-medium text-[#17110a] outline-none transition placeholder:text-[#9b8d78] focus:border-[#d9aa4e] focus:ring-4 focus:ring-[#d9aa4e]/20";
@@ -252,6 +253,8 @@ export default function AdminPanel() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [catalogSaving, setCatalogSaving] = useState(false);
+  const [advancePaymentAmount, setAdvancePaymentAmount] = useState("");
+  const [paymentSettingsSaving, setPaymentSettingsSaving] = useState(false);
 
   const authHeaders: Record<string, string> = adminKey
     ? { "x-admin-key": adminKey }
@@ -339,8 +342,26 @@ export default function AdminPanel() {
     }
   }
 
+  async function loadPaymentSettings() {
+    try {
+      const res = await fetch("/api/admin/settings", {
+        headers: authHeaders,
+        cache: "no-store",
+      });
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || "Payment settings load nahi hue.");
+
+      setAdvancePaymentAmount(String(data.advancePaymentAmount ?? ""));
+    } catch (error) {
+      setMessage(
+        error instanceof Error ? error.message : "Payment settings load nahi hue."
+      );
+    }
+  }
+
   async function refreshAll() {
-    await Promise.all([loadItems(), loadCatalog()]);
+    await Promise.all([loadItems(), loadCatalog(), loadPaymentSettings()]);
   }
 
   useEffect(() => {
@@ -613,6 +634,30 @@ export default function AdminPanel() {
     }
   }
 
+  async function handlePaymentSettingsSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setPaymentSettingsSaving(true);
+    setMessage("");
+
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", ...authHeaders },
+        body: JSON.stringify({ advancePaymentAmount: Number(advancePaymentAmount) }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || "Advance amount save nahi hua.");
+
+      setAdvancePaymentAmount(String(data.advancePaymentAmount));
+      setMessage("Advance payment amount save ho gaya.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Advance amount save nahi hua.");
+    } finally {
+      setPaymentSettingsSaving(false);
+    }
+  }
+
   async function toggleCatalogActive(
     type: CatalogType,
     id: string,
@@ -679,16 +724,21 @@ export default function AdminPanel() {
     { id: "package" as const, label: "Holiday Packages", icon: moduleMeta.package.icon },
     { id: "membership" as const, label: "Membership Plans", icon: moduleMeta.membership.icon },
     { id: "catalog" as const, label: "Category Builder", icon: <FolderTree size={22} /> },
+    { id: "payment-settings" as const, label: "Payment Settings", icon: <CreditCard size={22} /> },
   ];
 
   const activeModule =
-    section !== "dashboard" && section !== "catalog" ? section : form.category;
+    section !== "dashboard" && section !== "catalog" && section !== "payment-settings"
+      ? section
+      : form.category;
   const pageTitle =
     section === "dashboard"
       ? "Phoenix Dashboard"
       : section === "catalog"
         ? "Category Builder"
-        : moduleMeta[section].label;
+        : section === "payment-settings"
+          ? "Payment Settings"
+          : moduleMeta[section].label;
 
   return (
     <section className="min-h-screen bg-[#f7f1e7] text-[#17110a]">
@@ -710,7 +760,9 @@ export default function AdminPanel() {
                 key={item.id}
                 type="button"
                 onClick={() =>
-                  item.id === "dashboard" || item.id === "catalog"
+                  item.id === "dashboard" ||
+                  item.id === "catalog" ||
+                  item.id === "payment-settings"
                     ? setSection(item.id)
                     : openModule(item.id)
                 }
@@ -755,11 +807,13 @@ export default function AdminPanel() {
               <h1 className="mt-2 text-4xl font-extrabold leading-tight tracking-tight text-[#17110a] sm:text-5xl xl:text-[56px]">
                 {pageTitle}
               </h1>
-              {section !== "dashboard" && section !== "catalog" && (
-                <p className="mt-3 max-w-2xl text-lg font-medium text-[#6f6251]">
-                  {moduleMeta[section].description}
-                </p>
-              )}
+              {section !== "dashboard" &&
+                section !== "catalog" &&
+                section !== "payment-settings" && (
+                  <p className="mt-3 max-w-2xl text-lg font-medium text-[#6f6251]">
+                    {moduleMeta[section].description}
+                  </p>
+                )}
             </div>
 
             <div className="flex flex-wrap gap-3 xl:justify-end">
@@ -875,7 +929,9 @@ export default function AdminPanel() {
             </div>
           )}
 
-          {section !== "dashboard" && section !== "catalog" && (
+          {section !== "dashboard" &&
+            section !== "catalog" &&
+            section !== "payment-settings" && (
             <div className="grid gap-8">
               <Panel
                 title={`Saved ${moduleMeta[activeModule].label}`}
@@ -1680,6 +1736,45 @@ export default function AdminPanel() {
                   </div>
                 </Panel>
               </div>
+            </div>
+          )}
+
+          {section === "payment-settings" && (
+            <div className="grid gap-8">
+              <Panel title="Advance Payment Amount">
+                <form
+                  onSubmit={handlePaymentSettingsSubmit}
+                  className="grid max-w-md gap-5"
+                >
+                  <FormLabel label="Advance amount (INR)">
+                    <input
+                      type="number"
+                      min={1}
+                      value={advancePaymentAmount}
+                      onChange={(event) => setAdvancePaymentAmount(event.target.value)}
+                      placeholder="1000"
+                      required
+                      className={fieldClass}
+                    />
+                  </FormLabel>
+                  <p className="text-sm font-medium text-[#6f6251]">
+                    Yeh amount Contact page ke enquiry form pe advance payment ke roop
+                    mein Razorpay se collect hoga.
+                  </p>
+                  <button
+                    type="submit"
+                    disabled={paymentSettingsSaving}
+                    className={`${primaryButtonClass} justify-self-start`}
+                  >
+                    {paymentSettingsSaving ? (
+                      <LoaderCircle size={18} className="animate-spin" />
+                    ) : (
+                      <Save size={18} />
+                    )}
+                    Save Amount
+                  </button>
+                </form>
+              </Panel>
             </div>
           )}
         </main>

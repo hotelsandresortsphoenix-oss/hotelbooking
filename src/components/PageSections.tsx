@@ -4,6 +4,7 @@ import {
   ArrowUpRight,
   BadgeCheck,
   CalendarCheck,
+  LoaderCircle,
   Mail,
   MapPin,
   Phone,
@@ -473,8 +474,12 @@ export function ContactIntro() {
 
 export function ContactForm({
   onSubmit,
+  submitting = false,
+  buttonLabel = "Request My Quote",
 }: {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  submitting?: boolean;
+  buttonLabel?: string;
 }) {
   return (
     <form onSubmit={onSubmit} className="bg-white text-neutral-900 rounded-2xl p-7 grid gap-5">
@@ -508,8 +513,13 @@ export function ContactForm({
         </div>
       </div>
 
-      <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-amber-400 transition-colors">
-        <Send size={18} /> Request My Quote
+      <button
+        type="submit"
+        disabled={submitting}
+        className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-amber-400 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {submitting ? <LoaderCircle size={18} className="animate-spin" /> : <Send size={18} />}
+        {submitting ? "Processing..." : buttonLabel}
       </button>
     </form>
   );

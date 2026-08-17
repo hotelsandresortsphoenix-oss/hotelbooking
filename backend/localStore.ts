@@ -16,6 +16,7 @@ type LocalDb = {
   categories: PublicAdminCategory[];
   subCategories: PublicAdminSubCategory[];
   products: PublicAdminProduct[];
+  settings: { advancePaymentAmount: number };
 };
 
 const dbDir = path.join(os.tmpdir(), "hotelbooking-local-db");
@@ -27,6 +28,7 @@ function createEmptyDb(): LocalDb {
     categories: [],
     subCategories: [],
     products: [],
+    settings: { advancePaymentAmount: 1000 },
   };
 }
 
@@ -248,6 +250,18 @@ export async function deleteLocalCatalog(
 
   await writeDb(db);
   return true;
+}
+
+export async function getLocalAdvancePaymentAmount() {
+  const db = await readDb();
+  return db.settings.advancePaymentAmount;
+}
+
+export async function setLocalAdvancePaymentAmount(amount: number) {
+  const db = await readDb();
+  db.settings.advancePaymentAmount = amount;
+  await writeDb(db);
+  return amount;
 }
 
 export function getLocalModeMessage(error?: unknown) {
