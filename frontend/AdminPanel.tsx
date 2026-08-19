@@ -23,7 +23,6 @@ import {
   Plus,
   RefreshCw,
   Save,
-  Ship,
   Trash2,
   Waves,
   X,
@@ -102,7 +101,6 @@ const categoryLabels: Record<AdminItemCategory, string> = {
   international: "International Trips",
   hotel: "Hotels",
   resort: "Resorts",
-  cruise: "Cruises",
   package: "Holiday Packages",
   membership: "Membership Plans",
 };
@@ -139,12 +137,6 @@ const moduleMeta: Record<
     label: "Resorts",
     description: "Beach resorts, private villas, family stays and wellness retreats.",
     icon: <Waves size={22} />,
-  },
-  cruise: {
-    singular: "Cruise",
-    label: "Cruises",
-    description: "Domestic and international cruise holiday content.",
-    icon: <Ship size={22} />,
   },
   package: {
     singular: "Holiday Package",
@@ -720,7 +712,6 @@ export default function AdminPanel() {
     { id: "international" as const, label: "International Trips", icon: moduleMeta.international.icon },
     { id: "hotel" as const, label: "Hotels", icon: moduleMeta.hotel.icon },
     { id: "resort" as const, label: "Resorts", icon: moduleMeta.resort.icon },
-    { id: "cruise" as const, label: "Cruises", icon: moduleMeta.cruise.icon },
     { id: "package" as const, label: "Holiday Packages", icon: moduleMeta.package.icon },
     { id: "membership" as const, label: "Membership Plans", icon: moduleMeta.membership.icon },
     { id: "catalog" as const, label: "Category Builder", icon: <FolderTree size={22} /> },
@@ -867,11 +858,6 @@ export default function AdminPanel() {
                   label="Total Resorts"
                   value={items.filter((item) => item.category === "resort").length}
                   text="Resort content for beach, family and villa experiences."
-                />
-                <DashboardCard
-                  label="Total Cruises"
-                  value={items.filter((item) => item.category === "cruise").length}
-                  text="Cruise content for domestic and international sailings."
                 />
                 <DashboardCard
                   label="Total Holiday Packages"

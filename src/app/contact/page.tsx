@@ -141,7 +141,7 @@ export default function ContactPage() {
               Tell us what you want to plan.
             </h2>
             <p className="mt-4 text-neutral-300">
-              Hotels, resorts, domestic packages, international holidays, cruises or membership support - send your
+              Hotels, resorts, domestic packages, international holidays or membership support - send your
               details and we will get back to you.
             </p>
             <div className="mt-8">

@@ -20,16 +20,15 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Phoenix Hotels & Resorts | Luxury Hotels, Resorts & Cruise Holidays",
+  title: "Phoenix Hotels & Resorts | Luxury Hotels & Resorts",
   description:
-    "Discover luxury hotels, premium resorts, domestic and international destinations, curated holiday packages and unforgettable cruise experiences with Phoenix Hotels & Resorts.",
+    "Discover luxury hotels, premium resorts, domestic and international destinations and curated holiday packages with Phoenix Hotels & Resorts.",
   keywords: [
     "Phoenix Hotels and Resorts",
     "luxury hotel booking",
     "resort booking",
     "domestic holiday packages",
     "international holiday packages",
-    "cruise holidays",
     "honeymoon resorts",
     "family vacations",
   ],
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Phoenix Hotels & Resorts | Travel Beyond Ordinary",
     description:
-      "Explore luxury hotels, beautiful resorts, iconic destinations and premium cruise holidays.",
+      "Explore luxury hotels, beautiful resorts and iconic destinations.",
     type: "website",
     images: ["/images/logo.jpg"],
   },
@@ -53,7 +52,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "Phoenix Hotels & Resorts",
   description:
-    "Luxury hotel, resort, destination and cruise holiday planning services.",
+    "Luxury hotel, resort and destination holiday planning services.",
   url: "https://www.example.com",
   logo: "/images/logo.jpg",
   sameAs: [],

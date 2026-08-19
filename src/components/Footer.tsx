@@ -28,7 +28,7 @@ export default function Footer() {
             <Image src="/images/logo.jpg" alt="Phoenix Hotels and Resorts" width={40} height={40} className="rounded-full object-cover" />
             <p className="mt-4 text-sm leading-relaxed">
               Phoenix Hotels & Resorts brings together luxury stays, inspiring destinations and carefully planned
-              cruise experiences for travellers seeking comfort, quality and memorable moments.
+              holiday experiences for travellers seeking comfort, quality and memorable moments.
             </p>
           </div>
 
@@ -39,7 +39,6 @@ export default function Footer() {
               <li><Link href="/international" className="hover:text-white">International destinations</Link></li>
               <li><Link href="/hotels" className="hover:text-white">Luxury hotels</Link></li>
               <li><Link href="/hotels#resorts" className="hover:text-white">Premium resorts</Link></li>
-              <li><Link href="/cruises" className="hover:text-white">Cruise holidays</Link></li>
             </ul>
           </div>
 
@@ -75,7 +74,7 @@ export default function Footer() {
           </div>
         </div>
         <p className="mt-4 text-xs text-neutral-500">
-          Property and cruise names are shown for travel inspiration; availability and commercial terms require confirmation.
+          Property names are shown for travel inspiration; availability and commercial terms require confirmation.
         </p>
       </div>
     </footer>

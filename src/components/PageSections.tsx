@@ -9,7 +9,6 @@ import {
   MapPin,
   Phone,
   Send,
-  Ship,
 } from "lucide-react";
 import { Reveal, ImageReveal } from "@/components/ui";
 import type { PublicAdminItem } from "@backend/types";
@@ -268,58 +267,6 @@ export function ResortsGrid({
   );
 }
 
-export function CruisesPanel({
-  lines = [],
-}: {
-  lines?: PublicAdminItem[];
-}) {
-  return (
-    <section
-      className="relative grid items-center text-white overflow-hidden"
-      style={{
-        minHeight: "760px",
-        background:
-          "linear-gradient(90deg, rgba(3,5,8,0.96) 0%, rgba(3,5,8,0.78) 45%, rgba(3,5,8,0.25) 100%), url('/images/destinations/cruise.jpg') center/cover fixed",
-      }}
-    >
-      <div className="relative z-10 mx-auto max-w-7xl px-4 w-full">
-        <Reveal className="max-w-[710px]">
-          <span className="text-xs font-semibold tracking-widest text-amber-400 uppercase">Cruise holidays</span>
-          <h1 className="mt-3 font-[family-name:var(--font-display)] text-4xl sm:text-6xl font-semibold">
-            Wake up somewhere new.
-          </h1>
-          <p className="mt-4 text-neutral-300 max-w-2xl">
-            Sail across beautiful coastlines with comfortable accommodation, dining, entertainment and exciting port
-            experiences.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-amber-400 transition-colors">
-              <Ship size={18} /> Find My Cruise
-            </Link>
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold hover:bg-white/10 transition-colors">
-              Request Sailing Dates
-            </Link>
-          </div>
-
-          <div className="mt-14 grid sm:grid-cols-3 gap-8 text-left">
-            {lines.map((c) => {
-              const Icon = Ship;
-              return (
-                <article key={c.title} className="rounded-2xl bg-white/5 border border-white/10 p-6">
-                  <Icon size={25} className="text-amber-400" />
-                  <h4 className="mt-3 font-[family-name:var(--font-display)] text-lg font-semibold">{c.title}</h4>
-                  <p className="mt-2 text-sm text-neutral-300">{c.text}</p>
-                </article>
-              );
-            })}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 export function HolidayStyles({
   items = [],
 }: {
@@ -503,7 +450,6 @@ export function ContactForm({
             <option>Resort holiday</option>
             <option>Domestic package</option>
             <option>International package</option>
-            <option>Cruise holiday</option>
             <option>Membership</option>
           </select>
         </div>

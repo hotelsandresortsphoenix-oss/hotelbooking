@@ -3,7 +3,6 @@ import {
   Compass,
   MessageCircle,
   ArrowUpRight,
-  Ship,
   Phone,
   Mail,
   Clock3,
@@ -123,14 +122,12 @@ export default async function Home() {
     internationalStack,
     hotels,
     resorts,
-    cruiseLines,
     packages,
   ] = await Promise.all([
     getPublicItems("domestic"),
     getPublicItems("international"),
     getPublicItems("hotel"),
     getPublicItems("resort"),
-    getPublicItems("cruise"),
     getPublicItems("package"),
   ]);
 
@@ -154,7 +151,7 @@ export default async function Home() {
             </h1>
             <p className="mt-5 text-neutral-300 max-w-xl">
               Discover carefully selected hotels, iconic resorts, beautiful domestic and international
-              destinations, and memorable cruise holidays—designed around your style of travel.
+              destinations, and memorable holiday packages—designed around your style of travel.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -377,52 +374,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Cruises teaser */}
-      <section
-        className="relative grid items-center text-white overflow-hidden"
-        style={{
-          minHeight: "760px",
-          background:
-            "linear-gradient(90deg, rgba(3,5,8,0.96) 0%, rgba(3,5,8,0.78) 45%, rgba(3,5,8,0.25) 100%), url('/images/destinations/cruise.jpg') center/cover fixed",
-        }}
-      >
-        <div className="relative z-10 mx-auto max-w-7xl px-4 w-full">
-          <Reveal className="max-w-[710px]">
-            <span className="text-xs font-semibold tracking-widest text-amber-400 uppercase">Cruise holidays</span>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl sm:text-6xl font-semibold">
-              Wake up somewhere new.
-            </h2>
-            <p className="mt-4 text-neutral-300 max-w-2xl">
-              Sail across spectacular coastlines with comfortable accommodation, international dining,
-              entertainment and exciting port experiences. Choose short domestic escapes or memorable international
-              voyages.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/cruises" className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-amber-400 transition-colors">
-                <Ship size={18} /> Find My Cruise
-              </Link>
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold hover:bg-white/10 transition-colors">
-                Request Sailing Dates
-              </Link>
-            </div>
-
-            <div className="mt-14 grid sm:grid-cols-3 gap-8 text-left">
-              {cruiseLines.map((c) => {
-                const Icon = Ship;
-                return (
-                  <article key={c.title} className="rounded-2xl bg-white/5 border border-white/10 p-6">
-                    <Icon size={25} className="text-amber-400" />
-                    <h4 className="mt-3 font-[family-name:var(--font-display)] text-lg font-semibold">{c.title}</h4>
-                    <p className="mt-2 text-sm text-neutral-300">{c.text}</p>
-                  </article>
-                );
-              })}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Holiday styles */}
       <section className="bg-neutral-950 text-white py-20">
         <div className="mx-auto max-w-7xl px-4">
@@ -578,7 +529,7 @@ export default async function Home() {
             </h2>
             <p className="mt-4 text-neutral-300">
               Share your preferred destination, travel dates and holiday style. Our team will help shortlist
-              suitable hotels, resorts, packages or cruise options.
+              suitable hotels, resorts or holiday packages.
             </p>
 
             <div className="mt-8 grid gap-5">

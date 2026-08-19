@@ -1,7 +1,4 @@
 import {
-  Anchor,
-  Ship,
-  Waves,
   Heart,
   Users,
   Gem,
@@ -17,7 +14,6 @@ export const navItems = [
   { href: "/india", label: "India" },
   { href: "/international", label: "International" },
   { href: "/hotels", label: "Hotels & Resorts" },
-  { href: "/cruises", label: "Cruises" },
   { href: "/membership", label: "Membership" },
   { href: "/contact", label: "Contact" },
 ];
@@ -117,24 +113,6 @@ export const resorts = [
   },
 ];
 
-export const cruiseLines = [
-  {
-    icon: Anchor,
-    title: "Cordelia Cruises",
-    text: "Popular Indian coastal sailings, island escapes and convenient short itineraries.",
-  },
-  {
-    icon: Ship,
-    title: "Royal Caribbean",
-    text: "Feature-rich international ships with entertainment, dining and global itineraries.",
-  },
-  {
-    icon: Waves,
-    title: "MSC Cruises",
-    text: "Stylish Mediterranean-inspired voyages across Europe, the Gulf and beyond.",
-  },
-];
-
 export const packages = [
   {
     icon: Heart,
@@ -202,10 +180,10 @@ export const testimonials = [
   },
   {
     quote:
-      "The cruise suggestions were clear and practical. We selected the right itinerary without feeling overwhelmed.",
+      "Planning our corporate retreat was simple with clear package options and prompt support throughout.",
     initials: "RP",
     name: "Riya Patel",
-    trip: "International cruise",
+    trip: "Corporate retreat",
   },
 ];
 
@@ -225,11 +203,11 @@ export const blogPosts = [
     text: "Discover where to stay for beaches, nightlife, family comfort or a quieter coastal holiday.",
   },
   {
-    img: "/images/destinations/cruise.jpg",
-    alt: "Cruise holiday planning guide for Indian travellers",
-    label: "Cruise planning",
-    title: "Your First Cruise: What to Know Before Booking",
-    text: "Understand cabin categories, inclusions, shore excursions and the best itinerary for your group.",
+    img: "/images/destinations/switzerland.jpg",
+    alt: "Alpine hotel and lakeside town in Switzerland",
+    label: "International travel",
+    title: "Planning a First-Time Trip to Switzerland",
+    text: "Understand the best regions, travel seasons and stay options for a smooth alpine holiday.",
   },
 ];
 

@@ -136,7 +136,6 @@ export function HomeContactForm() {
             <option>Resort holiday</option>
             <option>Domestic package</option>
             <option>International package</option>
-            <option>Cruise holiday</option>
             <option>Corporate retreat</option>
           </select>
         </div>

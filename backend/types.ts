@@ -3,7 +3,6 @@ export const adminItemCategories = [
   "international",
   "hotel",
   "resort",
-  "cruise",
   "package",
   "membership",
 ] as const;
