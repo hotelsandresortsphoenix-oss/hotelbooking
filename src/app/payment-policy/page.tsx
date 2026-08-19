@@ -12,7 +12,7 @@ export default function PaymentPolicyPage() {
         {
           heading: "Definitions",
           paragraphs: [
-            "A. Phoenix Hotels & Resorts is a private limited firm incorporated under the Companies Act 2013.",
+            "A. Phoenix Hotels & Resorts firm incorporated under the Companies Act 2013.",
             'B. "Applicant" means any person(s) who is/are potential Vacationer/user who has applied for membership to Phoenix Hotels & Resorts.',
             '"Vacationer/User" means the applicant whose application for membership has been approved by the Management/authorized person of Phoenix Hotels & Resorts and in whose name the Phoenix Hotels & Resorts certificate is issued on the realization of the Down payment.',
             '"ANNUAL MAINTENANCE CHARGES" or "ANNUAL SUBSCRIPTION FEES" means the charges which are decided by the Management of Phoenix Hotels & Resorts to be paid by the Vacationer/User every year.',
@@ -130,7 +130,7 @@ export default function PaymentPolicyPage() {
         {
           heading: "11. Jurisdiction",
           paragraphs: [
-            "All services and disputes are governed by Indian laws, with exclusive jurisdiction in the courts of Mumbai, Maharashtra, to the exclusion of all other courts.",
+            "All services and disputes are governed by Indian laws, with exclusive jurisdiction in the courts of Baroda Gujarat to the exclusion of all other courts.",
           ],
         },
       ]}
