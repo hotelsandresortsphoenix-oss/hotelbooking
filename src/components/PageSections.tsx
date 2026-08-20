@@ -4,11 +4,11 @@ import {
   ArrowUpRight,
   BadgeCheck,
   CalendarCheck,
+  CreditCard,
   LoaderCircle,
   Mail,
   MapPin,
   Phone,
-  Send,
 } from "lucide-react";
 import { Reveal, ImageReveal } from "@/components/ui";
 import type { PublicAdminItem } from "@backend/types";
@@ -459,14 +459,33 @@ export function ContactForm({
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={submitting}
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-amber-400 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
-      >
-        {submitting ? <LoaderCircle size={18} className="animate-spin" /> : <Send size={18} />}
-        {submitting ? "Processing..." : buttonLabel}
-      </button>
+      <div className="rounded-2xl border border-neutral-200 bg-neutral-950 p-6 text-center">
+        <span className="text-xs font-semibold tracking-widest text-amber-400 uppercase">
+          Complete your payment
+        </span>
+        <p className="mt-2 text-sm text-neutral-300">
+          Complete your payment securely with Razorpay.
+        </p>
+        <button
+          type="submit"
+          disabled={submitting}
+          className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 px-6 py-4 text-neutral-900 shadow-[0_14px_30px_rgba(217,170,78,0.28)] transition hover:from-amber-100 hover:via-amber-300 hover:to-amber-500 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {submitting ? (
+            <LoaderCircle size={22} className="animate-spin" />
+          ) : (
+            <CreditCard size={22} />
+          )}
+          <span className="text-left leading-tight">
+            <span className="block text-base font-extrabold">
+              {submitting ? "Processing..." : buttonLabel}
+            </span>
+            <span className="block text-xs font-medium italic text-neutral-800/80">
+              Secured by Razorpay
+            </span>
+          </span>
+        </button>
+      </div>
     </form>
   );
 }
