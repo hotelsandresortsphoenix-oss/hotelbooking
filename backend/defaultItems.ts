@@ -295,6 +295,42 @@ export const defaultAdminItems: DefaultAdminItem[] = [
     cta: "Join Elite",
     isActive: true,
   },
+  {
+    category: "review",
+    img: defaultImage,
+    alt: "Aarav Kiara review",
+    title: "Aarav & Kiara",
+    text: "Our Maldives holiday felt effortless. The resort recommendation matched exactly what we wanted for our honeymoon.",
+    rating: 5,
+    isActive: true,
+  },
+  {
+    category: "review",
+    img: defaultImage,
+    alt: "Mehta Family review",
+    title: "Mehta Family",
+    text: "The Udaipur stay, transfers and experiences were coordinated beautifully for our family celebration.",
+    rating: 5,
+    isActive: true,
+  },
+  {
+    category: "review",
+    img: defaultImage,
+    alt: "Riya Patel review",
+    title: "Riya Patel",
+    text: "Planning our corporate retreat was simple with clear package options and prompt support throughout.",
+    rating: 4,
+    isActive: true,
+  },
+  {
+    category: "review",
+    img: defaultImage,
+    alt: "Karan Sethi review",
+    title: "Karan Sethi",
+    text: "Great support finding a family-friendly resort in Goa. Everything was exactly as described.",
+    rating: 5,
+    isActive: true,
+  },
 ];
 
 export function getDefaultAdminItems(category?: AdminItemCategory) {

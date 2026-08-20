@@ -5,6 +5,7 @@ export const adminItemCategories = [
   "resort",
   "package",
   "membership",
+  "review",
 ] as const;
 
 export type AdminItemCategory = (typeof adminItemCategories)[number];
@@ -24,6 +25,7 @@ export type PublicAdminItem = {
   price?: string;
   perks?: string[];
   featured?: boolean;
+  rating?: number;
   isActive: boolean;
   createdAt?: string;
   updatedAt?: string;

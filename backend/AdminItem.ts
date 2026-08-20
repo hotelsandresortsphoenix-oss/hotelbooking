@@ -15,6 +15,7 @@ export type AdminItemDocument = {
   price?: string;
   perks?: string[];
   featured?: boolean;
+  rating?: number;
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -44,6 +45,7 @@ const AdminItemSchema = new Schema<AdminItemDocument>(
     price: { type: String, trim: true },
     perks: [{ type: String, trim: true }],
     featured: { type: Boolean, default: false },
+    rating: { type: Number, min: 1, max: 5 },
     isActive: { type: Boolean, default: true, index: true },
   },
   { timestamps: true }

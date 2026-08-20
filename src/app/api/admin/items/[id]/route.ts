@@ -134,6 +134,10 @@ export async function PATCH(
     update.perks = cleanStringArray(body.perks);
   }
   if (typeof body.featured === "boolean") update.featured = body.featured;
+  if (body.rating !== undefined) {
+    const rating = Number(body.rating);
+    update.rating = Number.isFinite(rating) ? rating : undefined;
+  }
   if (typeof body.isActive === "boolean") update.isActive = body.isActive;
 
   try {

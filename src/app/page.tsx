@@ -14,12 +14,12 @@ import {
 } from "lucide-react";
 import { Reveal, BurstText, ImageReveal, AutoCarousel, StackCard, Counter } from "@/components/ui";
 import { HomeContactForm, HomeResortTabs, HomeSearchForm } from "@/components/HomeInteractions";
+import { ReviewsSection } from "@/components/ReviewsSection";
 import { getPublicItems } from "@backend/content";
 import {
   heroStats,
   resortTabs,
   benefits,
-  testimonials,
   blogPosts,
 } from "@/lib/data";
 
@@ -123,12 +123,14 @@ export default async function Home() {
     hotels,
     resorts,
     packages,
+    reviews,
   ] = await Promise.all([
     getPublicItems("domestic"),
     getPublicItems("international"),
     getPublicItems("hotel"),
     getPublicItems("resort"),
     getPublicItems("package"),
+    getPublicItems("review"),
   ]);
 
   return (
@@ -451,40 +453,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="bg-neutral-950 text-white py-20">
-        <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="max-w-2xl mb-12">
-            <span className="text-xs font-semibold tracking-widest text-amber-400 uppercase">Guest stories</span>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
-              Journeys worth remembering.
-            </h2>
-            <p className="mt-4 text-neutral-300">
-              Sample testimonial layout—replace with verified reviews from real Phoenix travellers before publishing.
-            </p>
-          </Reveal>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <Reveal key={t.name}>
-                <article className="rounded-2xl bg-neutral-900 border border-white/10 p-6 h-full flex flex-col">
-                  <div className="text-amber-400">★★★★★</div>
-                  <blockquote className="mt-3 text-sm text-neutral-300 flex-1">&ldquo;{t.quote}&rdquo;</blockquote>
-                  <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20 text-amber-400 text-xs font-semibold">
-                      {t.initials}
-                    </div>
-                    <div className="text-sm">
-                      <strong className="block">{t.name}</strong>
-                      <small className="text-neutral-400">{t.trip}</small>
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Reviews */}
+      <ReviewsSection initialReviews={reviews} />
 
       {/* Blog */}
       <section className="bg-neutral-50 py-20">

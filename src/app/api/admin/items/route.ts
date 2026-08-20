@@ -124,6 +124,7 @@ export async function POST(request: NextRequest) {
     price: cleanString(body.price) || undefined,
     perks: cleanStringArray(body.perks),
     featured: body.featured === true,
+    rating: Number.isFinite(Number(body.rating)) ? Number(body.rating) : undefined,
     isActive: body.isActive !== false,
   };
 

@@ -23,6 +23,7 @@ import {
   Plus,
   RefreshCw,
   Save,
+  Star,
   Trash2,
   Waves,
   X,
@@ -65,6 +66,7 @@ const emptyForm = {
   price: "",
   perks: "",
   featured: false,
+  rating: "",
   isActive: true,
 };
 
@@ -103,6 +105,7 @@ const categoryLabels: Record<AdminItemCategory, string> = {
   resort: "Resorts",
   package: "Holiday Packages",
   membership: "Membership Plans",
+  review: "Customer Reviews",
 };
 
 const moduleMeta: Record<
@@ -149,6 +152,12 @@ const moduleMeta: Record<
     label: "Membership Plans",
     description: "Explorer, Voyager, Elite and other customer membership plans.",
     icon: <Crown size={22} />,
+  },
+  review: {
+    singular: "Review",
+    label: "Customer Reviews",
+    description: "Reviews submitted by customers on the website. Approve to show them on the homepage.",
+    icon: <Star size={22} />,
   },
 };
 
@@ -411,6 +420,7 @@ export default function AdminPanel() {
       price: item.price || "",
       perks: item.perks?.join("\n") || "",
       featured: item.featured || false,
+      rating: item.rating ? String(item.rating) : "",
       isActive: item.isActive,
     });
     setSection(item.category);
@@ -714,6 +724,7 @@ export default function AdminPanel() {
     { id: "resort" as const, label: "Resorts", icon: moduleMeta.resort.icon },
     { id: "package" as const, label: "Holiday Packages", icon: moduleMeta.package.icon },
     { id: "membership" as const, label: "Membership Plans", icon: moduleMeta.membership.icon },
+    { id: "review" as const, label: "Customer Reviews", icon: moduleMeta.review.icon },
     { id: "catalog" as const, label: "Category Builder", icon: <FolderTree size={22} /> },
     { id: "payment-settings" as const, label: "Payment Settings", icon: <CreditCard size={22} /> },
   ];
@@ -868,6 +879,15 @@ export default function AdminPanel() {
                   label="Total Membership Plans"
                   value={items.filter((item) => item.category === "membership").length}
                   text="Explorer, Voyager, Elite and customer membership plan cards."
+                />
+                <DashboardCard
+                  label="Pending Reviews"
+                  value={
+                    items.filter(
+                      (item) => item.category === "review" && !item.isActive
+                    ).length
+                  }
+                  text="Customer reviews waiting for your approval before they go live."
                 />
               </div>
 
@@ -1070,6 +1090,19 @@ export default function AdminPanel() {
                             Featured plan
                           </label>
                         </div>
+                        <FormLabel label="Rating (1-5, reviews only)">
+                          <input
+                            type="number"
+                            min={1}
+                            max={5}
+                            value={newItemForm.rating}
+                            onChange={(event) =>
+                              updateNewItemField("rating", event.target.value)
+                            }
+                            placeholder="5"
+                            className={fieldClass}
+                          />
+                        </FormLabel>
                         <FormLabel label="Perks - one line per bullet">
                           <textarea
                             value={newItemForm.perks}
@@ -1249,6 +1282,19 @@ export default function AdminPanel() {
                                 Featured plan
                               </label>
                             </div>
+                            <FormLabel label="Rating (1-5, reviews only)">
+                              <input
+                                type="number"
+                                min={1}
+                                max={5}
+                                value={editingForm.rating}
+                                onChange={(event) =>
+                                  updateEditingField("rating", event.target.value)
+                                }
+                                placeholder="5"
+                                className={fieldClass}
+                              />
+                            </FormLabel>
                             <FormLabel label="Perks - one line per bullet">
                               <textarea
                                 value={editingForm.perks}
@@ -1315,7 +1361,8 @@ export default function AdminPanel() {
                             {item.text}
                           </p>
                           <p className="mt-2 text-xs font-bold uppercase tracking-wide text-[#8a7a63]">
-                            {item.price ||
+                            {(item.rating ? `${item.rating} / 5 stars` : "") ||
+                              item.price ||
                               item.location ||
                               item.badge ||
                               item.label ||

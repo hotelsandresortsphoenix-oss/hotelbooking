@@ -163,30 +163,6 @@ export const benefits = [
   },
 ];
 
-export const testimonials = [
-  {
-    quote:
-      "Our Maldives holiday felt effortless. The resort recommendation matched exactly what we wanted for our honeymoon.",
-    initials: "AK",
-    name: "Aarav & Kiara",
-    trip: "Maldives honeymoon",
-  },
-  {
-    quote:
-      "The Udaipur stay, transfers and experiences were coordinated beautifully for our family celebration.",
-    initials: "MS",
-    name: "Mehta Family",
-    trip: "Udaipur escape",
-  },
-  {
-    quote:
-      "Planning our corporate retreat was simple with clear package options and prompt support throughout.",
-    initials: "RP",
-    name: "Riya Patel",
-    trip: "Corporate retreat",
-  },
-];
-
 export const blogPosts = [
   {
     img: "/images/destinations/maldives.jpg",
