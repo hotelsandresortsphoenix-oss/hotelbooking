@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type CSSProperties, type FormEvent } from "react";
 import { LoaderCircle, Send, Star } from "lucide-react";
 import { Reveal } from "@/components/ui";
 import { useToast } from "@/components/ToastProvider";
@@ -159,23 +159,28 @@ export function ReviewsSection({
         {reviews.length === 0 ? (
           <p className="text-neutral-400">Be the first to share your experience with Phoenix Hotels & Resorts.</p>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.map((review) => (
-              <Reveal key={review._id}>
-                <article className="flex h-full flex-col rounded-2xl border border-white/10 bg-neutral-900 p-6">
-                  <StarRow rating={review.rating ?? 5} />
-                  <blockquote className="mt-3 flex-1 text-sm text-neutral-300">
-                    &ldquo;{review.text}&rdquo;
-                  </blockquote>
-                  <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20 text-xs font-semibold text-amber-400">
-                      {initialsFrom(review.title)}
+          <div
+            className="partner-marquee"
+            style={{ "--marquee-duration": `${reviews.length * 6}s` } as CSSProperties}
+          >
+            <div className="partner-marquee-track">
+              {[...reviews, ...reviews].map((review, index) => (
+                <div key={`${review._id}-${index}`} className="w-80 flex-shrink-0 px-3">
+                  <article className="flex h-full flex-col rounded-2xl border border-white/10 bg-neutral-900 p-6">
+                    <StarRow rating={review.rating ?? 5} />
+                    <blockquote className="mt-3 flex-1 text-sm text-neutral-300">
+                      &ldquo;{review.text}&rdquo;
+                    </blockquote>
+                    <div className="mt-5 flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20 text-xs font-semibold text-amber-400">
+                        {initialsFrom(review.title)}
+                      </div>
+                      <strong className="text-sm">{review.title}</strong>
                     </div>
-                    <strong className="text-sm">{review.title}</strong>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+                  </article>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
