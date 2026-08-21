@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     type: "website",
     images: ["/images/logo.jpg"],
   },
+  verification: {
+    google: "npx7C3iU1doAUF3WyBRgrFZSMHp6-9kvdFm3JzqZY_o",
+  },
 };
 
 const jsonLd = {
