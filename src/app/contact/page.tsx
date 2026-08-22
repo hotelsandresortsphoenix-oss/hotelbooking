@@ -44,12 +44,23 @@ export default function ContactPage() {
   const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const form = event.currentTarget;
+    const submitter = (event.nativeEvent as SubmitEvent).submitter as
+      | HTMLButtonElement
+      | null;
+    const intent = submitter?.value === "plain" ? "plain" : "payment";
+
+    if (intent === "plain") {
+      showToast("Thank you. Your enquiry has been recorded.");
+      form.reset();
+      return;
+    }
+
     if (!advanceAmount) {
       showToast("Payment is not available right now. Please try again shortly.");
       return;
     }
 
-    const form = event.currentTarget;
     const formData = new FormData(form);
     const name = String(formData.get("name") || "");
     const email = String(formData.get("email") || "");
