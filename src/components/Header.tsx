@@ -51,7 +51,7 @@ export default function Header() {
         className={`sticky top-0 z-40 transition-all duration-300 ${
           scrolled
             ? "bg-black/92 backdrop-blur-xl border-b border-amber-300/20 shadow-[0_12px_34px_rgba(0,0,0,0.22)]"
-            : "bg-black/70 backdrop-blur-xl border-b border-transparent"
+            : "bg-[#090806]/86 backdrop-blur-xl border-b border-white/10"
         }`}
       >
         <nav className="mx-auto max-w-7xl px-4 flex items-center justify-between gap-4 min-h-[74px] lg:min-h-[88px]">
@@ -73,20 +73,28 @@ export default function Header() {
             </span>
           </Link>
 
-          <ul className="hidden lg:flex items-center gap-6 text-sm font-semibold">
+          <ul className="hidden lg:flex items-center gap-5 text-sm font-semibold">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="nav-link-underline py-3 text-[#eee8dc] hover:text-amber-200 transition-colors">
+                <Link
+                  href={item.href}
+                  aria-current={pathname === item.href ? "page" : undefined}
+                  className={`nav-link-underline py-3 transition-colors ${
+                    pathname === item.href
+                      ? "text-amber-200"
+                      : "text-[#f4efe4]/88 hover:text-amber-200"
+                  }`}
+                >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2.5">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-[#17110a] bg-gradient-to-br from-amber-200 via-amber-400 to-amber-700 shadow-[0_14px_34px_rgba(217,170,78,0.24)] hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(217,170,78,0.34)] transition-all"
+              className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-[#17110a] bg-gradient-to-br from-amber-200 via-amber-400 to-amber-700 shadow-[0_14px_34px_rgba(217,170,78,0.24)] hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(217,170,78,0.34)] transition-all"
             >
               <CalendarCheck size={17} /> Plan My Holiday
             </Link>
@@ -118,8 +126,11 @@ export default function Header() {
                     <Link
                       href={item.href}
                       onClick={closeMenu}
-                      className="block py-2.5 font-[family-name:var(--font-display)] text-2xl text-[#eee8dc] border-b border-white/10 last:border-none"
-                    >
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    className={`block py-2.5 font-[family-name:var(--font-display)] text-2xl border-b border-white/10 last:border-none ${
+                      pathname === item.href ? "text-amber-200" : "text-[#eee8dc]"
+                    }`}
+                  >
                       {item.label}
                     </Link>
                   </li>

@@ -29,19 +29,20 @@ export function PageHero({
   primaryLabel?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-neutral-950 text-white">
+    <section className="relative flex min-h-[540px] overflow-hidden bg-neutral-950 text-white lg:min-h-[620px]">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${image}')` }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/76 via-black/58 to-neutral-950" />
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 lg:py-28">
+      <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/54 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-neutral-950" />
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center px-4 py-16 lg:py-20">
         <Reveal className="max-w-3xl">
-          <span className="text-xs font-semibold tracking-widest text-amber-300 uppercase">{eyebrow}</span>
-          <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+          <span className="text-xs font-bold tracking-widest text-amber-300 uppercase">{eyebrow}</span>
+          <h1 className="mt-4 max-w-4xl font-[family-name:var(--font-display)] text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-7xl">
             {title}
           </h1>
-          <p className="mt-5 max-w-2xl text-neutral-300">{text}</p>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-neutral-200 sm:text-lg">{text}</p>
           <Link
             href={primaryHref}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-amber-400 transition-colors"
+            className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 px-6 py-3 text-sm font-bold text-neutral-950 shadow-[0_16px_34px_rgba(217,170,78,0.24)] transition hover:-translate-y-0.5 hover:from-amber-100 hover:via-amber-300 hover:to-amber-500"
           >
             <CalendarCheck size={18} /> {primaryLabel}
           </Link>
