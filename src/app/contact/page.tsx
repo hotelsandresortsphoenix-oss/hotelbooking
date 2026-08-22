@@ -5,29 +5,7 @@ import { useEffect, useState } from "react";
 import { ContactForm, ContactIntro, PageHero } from "@/components/PageSections";
 import { Reveal } from "@/components/ui";
 import { useToast } from "@/components/ToastProvider";
-
-declare global {
-  interface Window {
-    Razorpay?: new (options: Record<string, unknown>) => {
-      open: () => void;
-    };
-  }
-}
-
-function loadRazorpayScript(): Promise<boolean> {
-  return new Promise((resolve) => {
-    if (window.Razorpay) {
-      resolve(true);
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
-  });
-}
+import { loadRazorpayScript } from "@/lib/razorpay";
 
 export default function ContactPage() {
   const { showToast } = useToast();

@@ -1,4 +1,5 @@
-import { MembershipPlansList, PageHero } from "@/components/PageSections";
+import { PageHero } from "@/components/PageSections";
+import { MembershipPlansList } from "@/components/MembershipPlans";
 import { getPublicItems } from "@backend/content";
 
 export const dynamic = "force-dynamic";

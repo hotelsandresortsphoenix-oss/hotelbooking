@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { Reveal, ImageReveal } from "@/components/ui";
 import type { PublicAdminItem } from "@backend/types";
-import { membershipTiers } from "@/lib/data";
 
 export function PageHero({
   eyebrow,
@@ -304,90 +303,6 @@ export function HolidayStyles({
                 </article>
               </Reveal>
             );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function MembershipPlans() {
-  return <MembershipPlansList items={membershipTiers} />;
-}
-
-type MembershipPlanItem = {
-  _id?: string;
-  name?: string;
-  title?: string;
-  price?: string;
-  tagline?: string;
-  text?: string;
-  perks?: string[];
-  cta?: string;
-  featured?: boolean;
-};
-
-export function MembershipPlansList({
-  items = membershipTiers,
-}: {
-  items?: MembershipPlanItem[];
-}) {
-  const planItems: MembershipPlanItem[] = items.length ? items : membershipTiers;
-
-  return (
-    <section className="bg-neutral-50 py-20">
-      <div className="mx-auto max-w-7xl px-4">
-        <Reveal className="max-w-2xl mb-12">
-          <span className="text-xs font-semibold tracking-widest text-amber-600 uppercase">Phoenix membership</span>
-          <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold">
-            More value for every journey.
-          </h2>
-          <p className="mt-4 text-neutral-600">
-            Membership options for travellers who want curated offers, better support and added comfort.
-          </p>
-        </Reveal>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {planItems.map((tier) => {
-            const name = tier.name || tier.title || "Membership";
-            const tagline = tier.tagline || tier.text || "";
-            const cta = tier.cta || `Join ${name}`;
-
-            return (
-            <Reveal key={tier._id || name}>
-              <article
-                className={`rounded-2xl border p-7 h-full ${
-                  tier.featured
-                    ? "bg-neutral-950 text-white border-amber-400 shadow-2xl"
-                    : "bg-white text-neutral-900 border-neutral-200 shadow-sm"
-                }`}
-              >
-                <span className={`text-xs font-semibold tracking-widest uppercase ${tier.featured ? "text-amber-300" : "text-amber-600"}`}>
-                  {name}
-                </span>
-                <h3 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold">{tier.price}</h3>
-                <p className={`mt-2 text-sm ${tier.featured ? "text-neutral-300" : "text-neutral-600"}`}>{tagline}</p>
-                <ul className="mt-6 space-y-3 text-sm">
-                  {(tier.perks || []).map((perk) => (
-                    <li key={perk} className="flex gap-2">
-                      <BadgeCheck size={18} className={tier.featured ? "text-amber-300 shrink-0" : "text-amber-600 shrink-0"} />
-                      <span>{perk}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/contact"
-                  className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors ${
-                    tier.featured
-                      ? "bg-amber-500 text-neutral-900 hover:bg-amber-400"
-                      : "bg-neutral-900 text-white hover:bg-neutral-800"
-                  }`}
-                >
-                  {cta}
-                </Link>
-              </article>
-            </Reveal>
-          );
           })}
         </div>
       </div>
