@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Phone, Mail, Sparkles, CalendarCheck, Menu, X } from "lucide-react";
 import { navItems } from "@/lib/data";
+import HeaderPayButton from "@/components/HeaderPayButton";
 
 export default function Header() {
   const pathname = usePathname();
@@ -82,12 +83,15 @@ export default function Header() {
             ))}
           </ul>
 
-          <Link
-            href="/contact"
-            className="hidden lg:inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-[#17110a] bg-gradient-to-br from-amber-200 via-amber-400 to-amber-700 shadow-[0_14px_34px_rgba(217,170,78,0.24)] hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(217,170,78,0.34)] transition-all"
-          >
-            <CalendarCheck size={17} /> Plan My Holiday
-          </Link>
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-[#17110a] bg-gradient-to-br from-amber-200 via-amber-400 to-amber-700 shadow-[0_14px_34px_rgba(217,170,78,0.24)] hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(217,170,78,0.34)] transition-all"
+            >
+              <CalendarCheck size={17} /> Plan My Holiday
+            </Link>
+            <HeaderPayButton />
+          </div>
 
           <button
             onClick={() => setMenuOpen((o) => !o)}
@@ -121,6 +125,9 @@ export default function Header() {
                   </li>
                 ))}
               </ul>
+              <div className="px-4 pb-5">
+                <HeaderPayButton className="w-full justify-center" />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
